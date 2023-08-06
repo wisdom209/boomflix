@@ -10,7 +10,8 @@ const MediaSubSection = ({ title }) => {
 				fontWeight: '800',
 				fontSize: '30px',
 				color: 'white',
-				marginTop: '50px'
+				marginTop: '50px',
+				marginLeft: '10px'
 			}}>
 				{title}
 			</Typography>

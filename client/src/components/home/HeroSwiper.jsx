@@ -14,7 +14,7 @@ const HeroSwiper = () => {
 					<Box sx={{
 						height: '100vh',
 						width: '100vw',
-						background: 'linear-gradient(to top right, rgba(0,0,0, 1), transparent)',
+						background: 'linear-gradient(to top right, rgba(0,0,0, 1), transparent), linear-gradient(to top, rgba(0,0,0, 1), transparent)',
 						position: 'relative',
 						zIndex: 1,
 						display: 'flex',
