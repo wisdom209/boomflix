@@ -1,6 +1,7 @@
 import React from 'react'
-import { Stack, Avatar, Typography, Box } from '@mui/material'
+import { Stack, Avatar, Typography, Box, TextField, Button, Divider } from '@mui/material'
 import RedDivider from '../global/RedDivder'
+import { Send } from '@mui/icons-material'
 
 const Review = () => {
 	const day = new Date(Date.now()).getDate()
@@ -14,8 +15,28 @@ const Review = () => {
 				<Typography fontSize={35} fontWeight={600} color="white" ml={1}>Reviews</Typography>
 				<RedDivider />
 			</Stack>
+			<Stack direction='row' spacing={3} style={{ marginLeft: '10px' }}>
+				<TextField
+					id="outlined-multiline-static"
+					label="What do you think about this show?"
+					multiline
+					sx={{ backgroundColor: '#555353', width: "60%", borderRadius: '8px', margin: '0 10px', color: 'white' }}
+					InputLabelProps={{
+						sx: { color: 'whitesmoke', opacity: '0.6' }
+					}}
+					inputProps={{
+						sx: { color: 'white' }
+					}}
+					rows={4}
+					color='success'
+				/>
+
+				<Button startIcon={<Send />} style={{ backgroundColor: 'red', color: 'white', height: '20%' }}>
+					<Typography variant="h6" fontWeight={600}>POST</Typography>
+				</Button>
+			</Stack>
 			<Stack direction='row' spacing={2}>
-				<Box style={{ marginLeft:"10px" }}>
+				<Box style={{ marginLeft: "10px" }}>
 					<Avatar color='secondary'>
 						T
 					</Avatar>
@@ -25,6 +46,7 @@ const Review = () => {
 					<Typography color="white">Test123</Typography>
 					<Typography color="white">{date}</Typography>
 					<Typography color="white">Hi</Typography>
+					<Divider light />
 				</Stack>
 			</Stack>
 
