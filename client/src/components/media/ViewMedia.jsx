@@ -4,11 +4,12 @@ import { Typography, Stack, Chip, Box, Button } from '@mui/material'
 import CircularRating from '../global/CircularRating'
 import WatchNowButton from '../global/WatchNowButton'
 import ImageSwiper from '../home/ImageSwiper'
+import RedDivider from '../global/RedDivder'
 
 const ViewMedia = () => {
 	return (
 		<Box>
-			<Stack spacing={4}>
+			<Stack >
 				<Box>
 					<HeroBackground>
 						<Box style={{
@@ -19,9 +20,10 @@ const ViewMedia = () => {
 							minHeight: '100vh',
 							display: 'flex',
 							alignItems: 'center',
-							zIndex: 2
+							width: '100vw',
+							background: 'linear-gradient(to top right, rgba(0,0,0, 1), transparent), linear-gradient(to top, rgba(0,0,0, 1), transparent)'
 						}}>
-							<Stack spacing={2} >
+							<Stack spacing={4} width='600px'>
 								<Typography variant="h3" fontWeight={700} color="white ">Openheimer</Typography>
 
 								<Stack direction='row' spacing={2}>
@@ -43,7 +45,7 @@ const ViewMedia = () => {
 					</HeroBackground>
 				</Box>
 
-				<Box style={{ translate: '0px -150px', margin: '0px 20px' }}>
+				<Box style={{ translate: '0px -150px', margin: '0px 20px', zIndex: '3' }}>
 					<Stack direction='row'>
 						<Stack flexGrow={1}>
 
@@ -63,6 +65,11 @@ const ViewMedia = () => {
 
 				</Box>
 
+				<Stack style={{ translate: '0px -20px' }}>
+					<Typography variant='h4' fontWeight={700} color="white">VIDEOS</Typography>
+					<RedDivider />
+				</Stack>
+
 				<Stack spacing={0}>
 					{Array(16).fill('_').map((v, i) => {
 						if (i % 4 == 0) {
@@ -70,10 +77,13 @@ const ViewMedia = () => {
 						}
 					})}
 				</Stack>
+				
+				<Stack mt={5}>
+					<Button size='large' color="error">
+						<Typography fontWeight={800}>Load More</Typography>
+					</Button>
+				</Stack>
 
-				<Button size='large' color="error" >
-					<Typography fontWeight={800}>Load More</Typography>
-				</Button>
 			</Stack>
 		</Box>
 	)
