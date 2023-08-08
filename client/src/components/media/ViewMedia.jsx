@@ -12,15 +12,14 @@ const ViewMedia = () => {
 				<Box>
 					<HeroBackground>
 						<Box style={{
-							postion: 'absolute',
 							zIndex: 2,
 							paddingLeft: '50px',
-							width: '500px',
+							width: '80vw',
 							minHeight: '100vh',
 							display: 'flex',
 							alignItems: 'center',
 							justifyContent: 'center',
-							background: 'linear-gradient(to top right, rgba(0,0,0, 1), transparent), linear-gradient(to top, rgba(0,0,0, 1), transparent)'
+
 						}}>
 							<Hidden mdDown>
 								<Stack zIndex={3} direction="row" spacing={2} mt={10}>

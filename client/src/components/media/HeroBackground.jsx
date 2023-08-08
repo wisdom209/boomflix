@@ -17,7 +17,7 @@ const HeroBackground = ({ children }) => {
 	return (
 		<>
 			<Box sx={styles.box} style={{ color: 'white', overflowX: 'hidden' }}>
-				<BackgroundHeroImg img='/mario.jpeg' />
+				<BackgroundHeroImg img='https://picsum.photos/500' />
 
 				{children}
 				
@@ -26,11 +26,11 @@ const HeroBackground = ({ children }) => {
 				
 				<MovieInfoBoxNoCast />
 				
-				<Box m={2} />
+				<Box m={8} />
 				
 				<CastSwiper width='30em'/>
 				
-
+				<Box m={8} />
 			</Hidden>
 
 		</>
