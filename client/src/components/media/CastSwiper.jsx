@@ -9,12 +9,12 @@ import {
 } from '@mui/material'
 import RedDivider from '../global/RedDivder'
 
-const CastSwiper = () => {
+const CastSwiper = ({ width }) => {
 	return (
 		<Stack>
 			<Typography variant='h4' color="white">Cast</Typography>
 			<RedDivider />
-			<swiper-container slides-per-view="auto" space-between="5" style={{width: '50em' }}>
+			<swiper-container slides-per-view="3" space-between="5" style={{ width: `${width}` }}>
 				{Array(10).fill('_').map((v, i) => <swiper-slide key={i}>
 					<Card sx={{ marginRight: "5px" }}>
 						<CardActionArea>

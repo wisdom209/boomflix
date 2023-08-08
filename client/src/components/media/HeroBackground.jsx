@@ -1,7 +1,8 @@
 import React from 'react'
-import { Box, Paper, Stack, makeStyles } from '@mui/material'
+import { Box, Hidden } from '@mui/material'
 import BackgroundHeroImg from '../home/BackgroundHeroImg'
-import MediaDescription from '../media/MediaDescription'
+import { MovieInfoBoxNoCast } from '../media/MediaDescription'
+import CastSwiper from './CastSwiper'
 
 const styles = {
 	box: {
@@ -14,12 +15,25 @@ const styles = {
 const HeroBackground = ({ children }) => {
 
 	return (
-		<Box sx={styles.box} style={{ color: 'white', overflowX: 'hidden'}}>
-			<BackgroundHeroImg img='/mario.jpeg' />
+		<>
+			<Box sx={styles.box} style={{ color: 'white', overflowX: 'hidden' }}>
+				<BackgroundHeroImg img='/mario.jpeg' />
 
-			{children}
+				{children}
+				
+			</Box>
+			<Hidden mdUp>
+				
+				<MovieInfoBoxNoCast />
+				
+				<Box m={2} />
+				
+				<CastSwiper width='30em'/>
+				
 
-		</Box>
+			</Hidden>
+
+		</>
 	)
 }
 

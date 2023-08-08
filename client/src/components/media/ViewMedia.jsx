@@ -1,10 +1,9 @@
 import React from 'react'
 import HeroBackground from './HeroBackground'
-import { Typography, Stack, Chip, Box, Button } from '@mui/material'
-import CircularRating from '../global/CircularRating'
-import WatchNowButton from '../global/WatchNowButton'
+import { Typography, Stack, Box, Button, Hidden } from '@mui/material'
 import ImageSwiper from '../home/ImageSwiper'
 import RedDivider from '../global/RedDivder'
+import { MovieInfoBox, MovieInfoBoxNoCast } from './MediaDescription'
 
 const ViewMedia = () => {
 	return (
@@ -20,27 +19,21 @@ const ViewMedia = () => {
 							minHeight: '100vh',
 							display: 'flex',
 							alignItems: 'center',
-							
+							justifyContent: 'center',
 							background: 'linear-gradient(to top right, rgba(0,0,0, 1), transparent), linear-gradient(to top, rgba(0,0,0, 1), transparent)'
 						}}>
-							<Stack spacing={4} width='600px'>
-								<Typography variant="h3" fontWeight={700} color="white ">Openheimer</Typography>
-
-								<Stack direction='row' spacing={2}>
-
-									<CircularRating rating='7.5' size={50} />
-
-									<Chip label="Animation" color="error" />
-									<Chip label="Family" color="error" />
+							<Hidden mdDown>
+								<Stack zIndex={3} direction="row" spacing={2} mt={10}>
+									<img src="/jetli.jpeg" width='100%' />
+									<MovieInfoBoxNoCast />
+								</Stack>
+							</Hidden>
+							<Hidden mdUp>
+								<Stack zIndex={3} direction="row" spacing={2} mt={1} width="100vw" sx={{ display: 'grid', placeContent: 'center' }}>
+									<img src="/jetli.jpeg" width='100%' height="400px" />
 
 								</Stack>
-
-								<Typography color="white"  >
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, eveniet. Quaerat ea autem voluptatum numquam quae, cum dignissimos doloremque sapiente minus ipsum amet nihil facilis rerum quam itaque soluta cupiditate!
-								</Typography>
-
-								<WatchNowButton />
-							</Stack>
+							</Hidden>
 						</Box>
 					</HeroBackground>
 				</Box>
@@ -52,15 +45,16 @@ const ViewMedia = () => {
 							<Typography color="white" style={{ width: '200px', fontWeight: 700, fontSize: '30px' }}>Movies</Typography>
 
 						</Stack>
-
-						<Stack direction='row' spacing={2}>
-							<Button variant='contained' color="error">
-								<Typography>POPULAR</Typography>
-							</Button>
-							<Button variant='contained' color="error">
-								<Typography>TOP RATED</Typography>
-							</Button>
-						</Stack>
+						<Hidden mdDown>
+							<Stack direction='row' spacing={2}>
+								<Button variant='contained' color="error">
+									<Typography>POPULAR</Typography>
+								</Button>
+								<Button variant='contained' color="error">
+									<Typography>TOP RATED</Typography>
+								</Button>
+							</Stack>
+						</Hidden>
 					</Stack>
 
 				</Box>
@@ -77,7 +71,7 @@ const ViewMedia = () => {
 						}
 					})}
 				</Stack>
-				
+
 				<Stack mt={5}>
 					<Button size='large' color="error">
 						<Typography fontWeight={800}>Load More</Typography>

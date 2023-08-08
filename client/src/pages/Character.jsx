@@ -11,14 +11,16 @@ const Character = () => {
 			<Header />
 
 			<Stack>
-				<Stack direction="row" spacing={3} margin="0px 100px" mt="100px" mb="100px">
+				<Stack direction="row" spacing={5} margin="0px 100px" mt="100px" mb="100px"
+					sx={{ flexWrap: { xs: 'wrap', sm: 'nowrap' } }}
+				>
 					<img src="/jetli.jpeg" style={{
 						width: '300px',
 						height: '300px'
 					}} />
 
 					<Stack spacing={2}>
-						<Typography color="white" variant="h2">Chris Pratt (1979)</Typography>
+						<Typography color="white" variant="h4">Chris Pratt (1979)</Typography>
 
 						<Typography color="white">
 							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, maxime neque! Ratione repellendus nesciunt officiis quas quae vitae animi minima vero sit, officia consequuntur dicta aliquid earum. Alias, vitae aperiam.
@@ -46,7 +48,7 @@ const Character = () => {
 						</Button>
 					</Stack>
 				</Stack>
-			</Stack>
+			</Stack >
 
 			<Footer />
 		</>
