@@ -1,6 +1,4 @@
-import { Box, Stack, Typography, Button, Chip } from "@mui/material"
-import { PlayArrow } from "@mui/icons-material"
-import CircularRating from "../global/CircularRating"
+import { Box, Stack } from "@mui/material"
 import BackgroundHeroImg from "./BackgroundHeroImg"
 import MediaDescription from "./MediaDescription"
 import WatchNowButton from "../global/WatchNowButton"

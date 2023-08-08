@@ -20,7 +20,7 @@ const ViewMedia = () => {
 							minHeight: '100vh',
 							display: 'flex',
 							alignItems: 'center',
-							width: '100vw',
+							
 							background: 'linear-gradient(to top right, rgba(0,0,0, 1), transparent), linear-gradient(to top, rgba(0,0,0, 1), transparent)'
 						}}>
 							<Stack spacing={4} width='600px'>

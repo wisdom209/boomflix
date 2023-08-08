@@ -4,29 +4,21 @@ import BackgroundHeroImg from '../home/BackgroundHeroImg'
 import MediaDescription from '../media/MediaDescription'
 
 const styles = {
-	image: {
-		height: '450px',
-		width: '500px',
-		marginTop: '100px',
-	},
 	box: {
 		height: '100vh',
-		display: 'flex',
-		direction: 'column',
-		justifyContent: 'start',
-		alignItems: 'center',
-		marginBottom: '100px'
+		marginBottom: '50px',
+		width: '100vw'
 	}
 }
 
 const HeroBackground = ({ children }) => {
 
 	return (
-		<Box sx={styles.box}>
+		<Box sx={styles.box} style={{ color: 'white', overflowX: 'hidden'}}>
 			<BackgroundHeroImg img='/mario.jpeg' />
-			
+
 			{children}
-			
+
 		</Box>
 	)
 }

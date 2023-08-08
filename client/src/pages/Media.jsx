@@ -9,14 +9,14 @@ import MediaDescription from '../components/media/MediaDescription'
 
 const Media = () => {
 	return (
-		<Box width='100vw'>
+		<>
 			<Header />
 			<HeroBackground>
 				<MediaDescription />
 			</HeroBackground>
 			<MediaList />
 			<Footer />
-		</Box>
+		</>
 	)
 }
 

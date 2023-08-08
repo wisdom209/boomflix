@@ -14,17 +14,17 @@ const CastSwiper = () => {
 		<Stack>
 			<Typography variant='h4' color="white">Cast</Typography>
 			<RedDivider />
-			<swiper-container slides-per-view="4">
-				{[1, 2, 3, 5, 6, 7, 8].map((v, i) => <swiper-slide>
+			<swiper-container slides-per-view="7" style={{width: '80em' }}>
+				{Array(10).fill('_').map((v, i) => <swiper-slide key={i}>
 					<Card sx={{ marginRight: "5px" }}>
 						<CardActionArea>
 							<swiper-container>
 								<swiper-slide>
 									<CardMedia
 										title='cast'
-										image={`https://picsum.photos/id/${Math.floor(Math.random() * 100) + 1}/500`} style={{ widht: '200px', height: '200px' }}
+										image={`https://picsum.photos/id/${Math.floor(Math.random() * 100) + 1}/500`} style={{ height: '200px' }}
 									>
-										<Box sx={{ bgcolor: 'black', color: 'whitesmoke', translate: '0px 175px', opacity: '0.8', textAlign: 'center' }}>
+										<Box sx={{ bgcolor: 'black', translate: '0px 175px', opacity: '0.8', textAlign: 'center' }} style={{ color: 'white' }}>
 											<Typography variant='subtitle1'>Jet Li</Typography>
 										</Box>
 
