@@ -31,32 +31,10 @@ const ViewMedia = () => {
 							<Hidden mdUp>
 								<Stack zIndex={3} direction="row" spacing={2} mt={1} width="100vw" sx={{ display: 'grid', placeContent: 'center' }}>
 									<img src="/jetli.jpeg" width='100%' height="400px" />
-
 								</Stack>
 							</Hidden>
 						</Box>
 					</HeroBackground>
-				</Box>
-
-				<Box style={{ translate: '0px -150px', margin: '0px 20px', zIndex: '3' }}>
-					<Stack direction='row'>
-						<Stack flexGrow={1}>
-
-							<Typography color="white" style={{ width: '200px', fontWeight: 700, fontSize: '30px' }}>Movies</Typography>
-
-						</Stack>
-						<Hidden mdDown>
-							<Stack direction='row' spacing={2}>
-								<Button variant='contained' color="error">
-									<Typography>POPULAR</Typography>
-								</Button>
-								<Button variant='contained' color="error">
-									<Typography>TOP RATED</Typography>
-								</Button>
-							</Stack>
-						</Hidden>
-					</Stack>
-
 				</Box>
 
 				<Stack style={{ translate: '0px -20px' }}>
