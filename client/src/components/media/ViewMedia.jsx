@@ -35,6 +35,7 @@ const ViewMedia = () => {
 						</Box>
 					</HeroBackground>
 				</Box>
+				
 
 				<Stack style={{ translate: '0px -20px' }}>
 					<Typography variant='h4' fontWeight={700} color="white">VIDEOS</Typography>
