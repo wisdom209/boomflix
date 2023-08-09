@@ -3,6 +3,7 @@ import appSlice from './features/appSlice'
 
 export const store = configureStore({
 	reducer: {
-		global: appSlice
+		global: appSlice,
+		devTools: true
 	}
 })

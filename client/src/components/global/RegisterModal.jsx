@@ -1,13 +1,16 @@
 import React from 'react'
 import { Stack, Typography, TextField, Button, Modal } from '@mui/material'
+import { useState } from 'react'
 
-const RegisterModal = ({ modalOpen, setmodalOpen }) => {
+const RegisterModal = ({ isOpen, setmodalOpen, setSetsignUpOpen }) => {
+
+	const [registerModalOpen, setRegisterModalOpen] = useState(isOpen)
 	return (
 		<>
 			<Modal
 				style={{ width: '50%', height: '400px', backgroundColor: 'grey', position: 'absolute', marginLeft: '25%', marginTop: '100px', outline: 'none', borderRadius: '8px' }}
-				open={modalOpen}
-				onClose={() => setmodalOpen(false)}
+				open={registerModalOpen}
+				onClose={() => setRegisterModalOpen(false)}
 			>
 
 				<Stack spacing={2} height='inherit' padding={3}>
@@ -47,7 +50,11 @@ const RegisterModal = ({ modalOpen, setmodalOpen }) => {
 							}}>
 							<Typography>SIGN UP</Typography>
 						</Button>
-						<Button>
+						<Button onClick={() => {
+							setRegisterModalOpen(false)
+							setmodalOpen(true)
+							setSetsignUpOpen(true)
+						}}>
 							<Typography sx={{ color: 'red' }}>SIGN IN</Typography>
 						</Button>
 					</Stack>

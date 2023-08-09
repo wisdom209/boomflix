@@ -1,7 +1,13 @@
 import React from 'react'
 import { Stack, Typography, TextField, Button, Modal } from '@mui/material'
+import { useState } from 'react'
 
-const SignUpModal = ({modalOpen, setmodalOpen}) => {
+const SignInModal = ({ modalOpen, setmodalOpen }) => {
+
+	const [isRegister, setIsRegister] = useState(false)
+	const [username, setUsername] = useState('')
+	const [password, setPassword] = useState('')
+
 	return (
 		<>
 			<Modal
@@ -24,6 +30,8 @@ const SignUpModal = ({modalOpen, setmodalOpen}) => {
 								sx: { color: 'white', opacity: '0.5' }
 
 							}}
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
 						/>
 
 						<TextField
@@ -35,6 +43,8 @@ const SignUpModal = ({modalOpen, setmodalOpen}) => {
 								sx: { color: 'white', opacity: '0.5' }
 
 							}}
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 						/>
 
 						<Button alignSelf="center"
@@ -44,11 +54,22 @@ const SignUpModal = ({modalOpen, setmodalOpen}) => {
 								width: '50%',
 								alignSelf: 'center',
 								marginTop: '25px'
-							}}>
-							<Typography>SIGN IN</Typography>
+							}}
+							onClick={() => {
+								if (!password && !username) {
+									setIsRegister(!isRegister)
+								}
+
+							}}
+						>
+							<Typography>{isRegister ? 'SIGN UP' : 'SIGN IN'}</Typography>
 						</Button>
-						<Button>
-							<Typography sx={{ color: 'red' }}>SIGN UP</Typography>
+						<Button onClick={() => {
+							if (!password && !username) {
+								setIsRegister(!isRegister)
+							}
+						}}>
+							<Typography sx={{ color: 'red' }}>{isRegister ? 'SIGN IN' : 'SIGN UP'}</Typography>
 						</Button>
 					</Stack>
 				</Stack>
@@ -57,4 +78,4 @@ const SignUpModal = ({modalOpen, setmodalOpen}) => {
 	)
 }
 
-export default SignUpModal
+export default SignInModal

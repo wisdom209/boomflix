@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const appSlice = createSlice({
 	name: 'app',
-	initialState: { count: 0 },
+	initialState: { count: 0, signInModal: false, signUpModal: true },
 	reducers: {
 		increment: (state) => {
 			state.count += 1
@@ -16,11 +16,17 @@ export const appSlice = createSlice({
 		},
 		decrementBy: (state, action) => {
 			state.count -= action.payload
+		},
+		signUpModal: (state, action) => {
+			state.signUpModal = action.payload
+		},
+		signInModal: (state, action) => {
+			state.signUpModal = action.payload
 		}
 	}
 })
 
 
-export const { increment, decrement, incrementBy, decrementBy } = appSlice.actions
+export const { increment, decrement, incrementBy, decrementBy, signInModal, signUpModal } = appSlice.actions
 
 export default appSlice.reducer

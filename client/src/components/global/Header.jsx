@@ -1,15 +1,18 @@
 import React from 'react'
-import { AppBar, Button, IconButton, Stack, Toolbar, Typography, Menu, MenuItem, ListItemIcon, ListItemText, Hidden, Drawer, Icon, List } from '@mui/material'
+import {
+	AppBar, Button, IconButton, Stack, Toolbar, Typography,
+	Menu, MenuItem, ListItemIcon, ListItemText, Hidden, Drawer, List
+} from '@mui/material'
 import { useState } from 'react'
 import { LightModeOutlined } from '@mui/icons-material'
-import SignUpModal from './SignUpModal'
+import SignInModal from './SignInModal'
+import RegisterModal from '../global/RegisterModal'
 import { Favorite } from '@mui/icons-material'
 import { Reviews } from '@mui/icons-material'
 import { Password } from '@mui/icons-material'
 import { Logout } from '@mui/icons-material'
-import { MenuOpen } from '@mui/icons-material'
-import { MenuBook } from '@mui/icons-material'
 import { MenuSharp } from '@mui/icons-material'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 
@@ -133,6 +136,7 @@ const Header = () => {
 	const [anchorEl, setanchorEl] = useState(null)
 	const openMenu = Boolean(anchorEl)
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+	const [signUpOpen, setSignUpOpen] = useState(false)
 
 	const handleCloseMenu = () => {
 		setanchorEl(null)
@@ -153,24 +157,25 @@ const Header = () => {
 					<LargeScreenHeader />
 					<MediumScreenHeader isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}></MediumScreenHeader>
 
-					{/* <Button
+					<Button
 						color="error"
 						variant="contained"
 						sx={{ marginLeft: 'auto' }}
 						onClick={() => setmodalOpen(true)}
-					>SIGN IN</Button> */}
-					<Typography
+					>SIGN IN</Button>
+					{/* <Typography
 						variant="h5"
 						fontWeight={700}
 						sx={{ marginLeft: 'auto' }}
 						onClick={(e) => setanchorEl(e.currentTarget)}
-					>Wisdom209</Typography>
+					>Wisdom209</Typography> */}
 				</Toolbar>
 			</AppBar>
 
 			<LoggedInUserMenu anchorEl={anchorEl} openMenu={openMenu} handleCloseMenu={handleCloseMenu}></LoggedInUserMenu>
 
-			<SignUpModal modalOpen={modalOpen} setmodalOpen={setmodalOpen} />
+			<SignInModal modalOpen={modalOpen} setmodalOpen={setmodalOpen} />
+
 		</>
 	)
 }
