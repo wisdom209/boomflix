@@ -56,18 +56,13 @@ const SignInModal = ({ modalOpen, setmodalOpen }) => {
 								marginTop: '25px'
 							}}
 							onClick={() => {
-								if (!password && !username) {
-									setIsRegister(!isRegister)
-								}
 
 							}}
 						>
 							<Typography>{isRegister ? 'SIGN UP' : 'SIGN IN'}</Typography>
 						</Button>
 						<Button onClick={() => {
-							if (!password && !username) {
-								setIsRegister(!isRegister)
-							}
+							setIsRegister(!isRegister)
 						}}>
 							<Typography sx={{ color: 'red' }}>{isRegister ? 'SIGN IN' : 'SIGN UP'}</Typography>
 						</Button>

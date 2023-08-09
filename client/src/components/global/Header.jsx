@@ -13,6 +13,10 @@ import { Password } from '@mui/icons-material'
 import { Logout } from '@mui/icons-material'
 import { MenuSharp } from '@mui/icons-material'
 import { useSelector, useDispatch } from 'react-redux'
+import { Home } from '@mui/icons-material'
+import { Movie } from '@mui/icons-material'
+import { Tv } from '@mui/icons-material'
+import { SearchSharp } from '@mui/icons-material'
 
 
 
@@ -53,36 +57,41 @@ function MediumScreenHeader(props) {
 		</Stack>
 		<Drawer anchor='left' open={props.isDrawerOpen} onClose={() => props.setIsDrawerOpen(false)}>
 			<List>
+
+				<ListItemText>
+					<Typography mx={2} variant='h2'>BoomFlix</Typography>
+				</ListItemText>
+
 				<MenuItem>
 					<ListItemIcon>
-						<Favorite />
+						<Home />
 					</ListItemIcon>
 					<ListItemText>
-						FAVORITES
+						HOME
 					</ListItemText>
 				</MenuItem>
 				<MenuItem>
 					<ListItemIcon>
-						<Reviews />
+						<Movie />
 					</ListItemIcon>
 					<ListItemText>
-						REVIEWS
+						MOVIES
 					</ListItemText>
 				</MenuItem>
 				<MenuItem>
 					<ListItemIcon>
-						<Password />
+						<Tv />
 					</ListItemIcon>
 					<ListItemText>
-						UPDATE PASSWORD
+						TV SERIES
 					</ListItemText>
 				</MenuItem>
 				<MenuItem>
 					<ListItemIcon>
-						<Logout />
+						<SearchSharp />
 					</ListItemIcon>
 					<ListItemText>
-						SIGN OUT
+						SEARCH
 					</ListItemText>
 				</MenuItem>
 
@@ -155,7 +164,7 @@ const Header = () => {
 			<AppBar sx={{ bgcolor: `${appBarBg}` }}>
 				<Toolbar >
 					<LargeScreenHeader />
-					<MediumScreenHeader isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}></MediumScreenHeader>
+					<MediumScreenHeader isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
 
 					<Button
 						color="error"
