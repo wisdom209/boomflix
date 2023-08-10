@@ -2,13 +2,29 @@ import { Box, Stack } from "@mui/material"
 import BackgroundHeroImg from "./BackgroundHeroImg"
 import MediaDescription from "./MediaDescription"
 import WatchNowButton from "../global/WatchNowButton"
+import { useEffect } from "react"
+import { buildImageUrl, getTrending } from "../../api_client/axiosClient"
+import { useState } from "react"
 
 const HeroSwiper = () => {
+	const [trendingMovies, setTrendingMovies] = useState(false)
+	useEffect(() => {
+
+		getTrending('movie').then(response => {
+			setTrendingMovies(response.data.results)
+		})
+			.catch(e => { e })
+
+
+	}, [])
+
 	return (
 		<swiper-container>
-			{[1, 2, 3, 4].map((v, i) =>
+			{console.log(trendingMovies)}
+			{/* {console.log(buildImageUrl(trendingMovies[0].backdrop_path))} */}
+			{trendingMovies == false ? <div>Loading</div> : trendingMovies.map((v, i) =>
 				<swiper-slide key={i}>
-					<BackgroundHeroImg img={`https://picsum.photos/id/${Math.floor(Math.random() * 100) + 1}/500`} />
+					<BackgroundHeroImg img={buildImageUrl(v.backdrop_path)} />
 					<Box sx={{
 						height: '100vh',
 						width: '100vw',
@@ -22,7 +38,9 @@ const HeroSwiper = () => {
 
 						<Stack width='600px' spacing={2} mt={14} pl={2} >
 
-							<MediaDescription />
+							<MediaDescription original_title={v.original_title}
+								overview={v.overview}
+								vote_average={v.vote_average} />
 							<WatchNowButton />
 						</Stack>
 
