@@ -2,9 +2,13 @@ import { Box, Stack } from "@mui/material"
 import BackgroundHeroImg from "./BackgroundHeroImg"
 import MediaDescription from "./MediaDescription"
 import WatchNowButton from "../global/WatchNowButton"
-import { useEffect } from "react"
-import { buildImageUrl, getGenres, getTrending } from "../../api_client/axiosClient"
-import { useState } from "react"
+import { buildImageUrl } from "../../api_client/axiosClient"
+import 'swiper/css'
+import 'swiper/css/navigation'
+
+// import required modules
+import { Navigation } from 'swiper/modules'
+
 
 const styles = {
 	backgroundBox: {
@@ -30,11 +34,11 @@ const getGenreFromList = (genreList, genreIds) => {
 }
 
 const HeroSwiper = ({ genres, trendingMovies }) => {
-
+	
 	return (
-		<swiper-container>
+		<swiper-container navigation={true} modules={[Navigation]} className="mySwiper" >
 			{trendingMovies !== undefined && trendingMovies.map((v, i) =>
-				<swiper-slide key={i}>
+				<swiper-slide key={i} lazy="true">
 					<BackgroundHeroImg img={buildImageUrl(v.backdrop_path)} />
 					<Box sx={styles.backgroundBox}>
 						<Stack width='600px' spacing={2} mt={14} pl={2} >

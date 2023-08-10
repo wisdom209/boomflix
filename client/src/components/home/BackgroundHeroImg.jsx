@@ -1,20 +1,22 @@
-import { Box } from "@mui/material"
+import { Box, CardMedia, Card } from "@mui/material"
 
 const BackgroundHeroImg = ({ img }) => {
 	return (
-		<Box sx={{
+		<Card sx={{
 			minWidth: '100vw',
 			zIndex: 0,
 			position: 'absolute',
 		}}>
-			<img style={{
+			<CardMedia style={{
 				width: '100vw',
 				height: '100vh',
 				objectFit: 'cover',
 			}}
-				src={img}
+				image={img}
+				component="img"
+				loading="lazy"
 			/>
-		</Box>
+		</Card>
 	)
 }
 

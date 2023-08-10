@@ -2,7 +2,7 @@ import Header from "../components/global/Header"
 import MediaList from "../components/home/MediaList"
 import HeroSwiper from "../components/home/HeroSwiper"
 import Footer from "../components/global/Footer"
-import { Box } from "@mui/material"
+import { Box, LinearProgress } from "@mui/material"
 import { useEffect, useState } from "react"
 import {
 	getGenres, getPopularMovies, getPopularSeries, getTrending,
@@ -10,6 +10,8 @@ import {
 } from "../api_client/axiosClient"
 import { useDispatch, useSelector } from 'react-redux'
 import { setPopularMovies, setPopularSeries, setTopratedMovies, setTopratedSeries } from "../redux/features/appSlice"
+import Loading from "./Loading"
+
 
 const Home = () => {
 
@@ -49,16 +51,33 @@ const Home = () => {
 	}, [])
 
 	media = useSelector(state => state.global.media)
+	const [display, setDisplay] = useState(null)
+
 
 
 	return (
 		<Box>
-			<Header />
-			<HeroSwiper trendingMovies={trendingMovies} genres={genres} />
+
 			
-			{Object.keys(media).length != 0 && <MediaList media={media} />}
-			<Footer />
+				{trendingMovies && Object.keys(media).length >= 4 ? <Box>
+					<Header />
+
+					<HeroSwiper trendingMovies={trendingMovies} genres={genres} />
+
+					 <MediaList media={media} />
+					<Footer />
+				</Box> :
+					<Box>
+						<Header />
+						<Box sx={{ marginTop: '80px' }}>
+							<LinearProgress color="error" />
+						</Box>
+
+						<Loading />
+					</Box>}
+			
 		</Box>
+
 	)
 }
 

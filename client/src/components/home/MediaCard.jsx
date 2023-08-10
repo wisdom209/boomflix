@@ -5,7 +5,7 @@ import CircularRating from '../global/CircularRating'
 import { useState } from 'react'
 import { buildImageUrl } from '../../api_client/axiosClient'
 
-const MediaCard = ({ image, media }) => {
+const MediaCard = ({ media }) => {
 	const [isHovered, setIsHovered] = useState(false)
 
 	return (
@@ -15,10 +15,11 @@ const MediaCard = ({ image, media }) => {
 				onMouseOut={() => setIsHovered(false)}
 			>
 				<CardMedia
-					sx={{ objectFit: 'cover', width: '500px', margin: '0px' }}
+					sx={{ objectFit: 'cover', width: '500px', margin: '0px', background: 'black' }}
 					height='300px'
 					component='img'
 					alt="movie banner"
+					loading='lazy'
 					src={buildImageUrl(media.poster_path)}
 				/>
 				{isHovered && <Stack sx={{
