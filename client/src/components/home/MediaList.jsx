@@ -3,13 +3,14 @@ import React from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import MediaSubSection from '../global/MediaSubSection';
 
-const MediaList = () => {
+const MediaList = ({ media }) => {
+
 	return (
 		<Stack mt={2} mb spacing={2}>
-			<MediaSubSection title="POPULAR MOVIES" />
-			<MediaSubSection title="POPULAR TV SERIES" />
-			<MediaSubSection title="TOP RATED MOVIES" />
-			<MediaSubSection title="TOP RATED TV SERIES" />
+			{media.popularMovies && <MediaSubSection title="POPULAR MOVIES" media={media.popularMovies} />}
+			{media.popularSeries && <MediaSubSection title="POPULAR TV SERIES" media={media.popularSeries} />}
+			{media.topratedMovies && <MediaSubSection title="TOP RATED MOVIES" media={media.topratedMovies} />}
+			{media.topratedSeries && <MediaSubSection title="TOP RATED TV SERIES" media={media.topratedSeries} />}
 		</Stack>
 
 	)

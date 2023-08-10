@@ -2,8 +2,9 @@ import { Typography, Box } from "@mui/material"
 
 import ImageSwiper from '../home/ImageSwiper'
 import RedDivider from '../global/RedDivder'
+import { useSelector } from "react-redux"
 
-const MediaSubSection = ({ title }) => {
+const MediaSubSection = ({ title, media }) => {
 	return (
 		<Box>
 			<Typography sx={{
@@ -18,7 +19,7 @@ const MediaSubSection = ({ title }) => {
 
 			<RedDivider />
 
-			<ImageSwiper />
+			<ImageSwiper title={title} media={media} />
 		</Box>
 	)
 }
