@@ -10,6 +10,7 @@ import {
 import RedDivider from '../global/RedDivder'
 
 const CastSwiper = ({ width }) => {
+	
 	return (
 		<Stack>
 			<Typography variant='h4' color="white">Cast</Typography>

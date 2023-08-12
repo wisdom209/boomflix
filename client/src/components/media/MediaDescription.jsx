@@ -1,10 +1,13 @@
 import React from 'react'
-import { Stack, Typography, Chip, IconButton, Card, CardMedia, CardActionArea, Box, Hidden } from "@mui/material"
+import { Stack, Typography, Chip, IconButton, Box, Hidden } from "@mui/material"
 import CircularRating from '../global/CircularRating'
 import WatchNowButton from '../global/WatchNowButton'
 import { FavoriteBorderOutlined } from '@mui/icons-material'
 import RedDivider from '../global/RedDivder'
 import CastSwiper from './CastSwiper'
+import { useSelector, useDispatch } from 'react-redux'
+import { buildImageUrl } from '../../api_client/axiosClient'
+
 
 const styles = {
 	backgroundOverlay: {
@@ -17,7 +20,7 @@ const styles = {
 	},
 	image: {
 		height: '450px',
-		width: '30rem',
+		width: '45rem',
 		marginTop: '130px',
 	},
 	box: {
@@ -61,24 +64,27 @@ export function MovieInfoBoxNoCast() {
 }
 
 export function MovieInfoBox() {
+	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
+	console.log(mediaDetails)
+
 	return (<Stack spacing={3}>
 		<Stack>
 			<Typography variant="h2" color="white" fontSize={40} mt={10} fontWeight={800}>
-				The Flash 2023
+				{mediaDetails.title || mediaDetails.original_name}
 			</Typography>
 		</Stack>
 
 		<Stack direction='row' spacing={2}>
 
-			<CircularRating rating='7.5' size={50} />
-			<Chip label="Animation" color="error" />
-			<Chip label="Family" color="error" />
+			<CircularRating rating={mediaDetails.vote_average.toFixed(1)} size={50} />
+			<Chip label={mediaDetails.genres[0].name || 'movie'} color="error" />
+			<Chip label={mediaDetails.genres[1].name || 'movie'}color="error" />
 
 		</Stack>
 
 		<Stack spacing={2}>
 			<Typography color="white">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, magni ab est minima, quaerat enim eaque culpa autem aspernatur rem eligendi obcaecati pariatur modi. Quos quas sit natus delectus incidunt.
+				{mediaDetails.overview}
 			</Typography>
 		</Stack>
 		<Stack direction='row' spacing={2} alignItems='center'>
@@ -93,7 +99,7 @@ export function MovieInfoBox() {
 			width: '40vw'
 		}}>
 			<RedDivider />
-			<CastSwiper width='50em'/>
+			<CastSwiper width='50em' />
 		</Stack>
 	</Stack>);
 }
@@ -107,12 +113,17 @@ function MediaSubDesc() {
 
 
 const MediaDescription = () => {
+	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
+	const poster = buildImageUrl(mediaDetails.poster_path)
+
+	console.log(mediaDetails)
 	return (
-		<Box style={styles.backgroundOverlay}>
+
+		< Box style={styles.backgroundOverlay} >
 			<Hidden mdDown >
 				<Stack zIndex={1} direction="row" spacing={2} ml={5} >
 
-					<img style={styles.image} src="https://picsum.photos/500" />
+					<img style={styles.image} src={poster} />
 
 					<MediaSubDesc />
 
@@ -121,15 +132,13 @@ const MediaDescription = () => {
 			<Hidden mdUp >
 				<Stack zIndex={1} ml={2}  >
 
-					<img style={styles.image} src="https://picsum.photos/500" />
+					<img style={styles.image} src={poster} />
 
 				</Stack>
 			</Hidden>
-			
-
-		</Box>
-
+		</Box >
 	)
+
 }
 
 export default MediaDescription

@@ -55,3 +55,18 @@ export const getGenres = (media_Type) => {
 		return { error }
 	}
 }
+
+export const getMediaDetail = (media_Type, media_Id) => {
+	try {
+		return axios.get(baseUrl + `/details/${media_Type}/${media_Id}`)
+	} catch (error) {
+		return { error }
+	}
+}
+export const getCast = (media_Type, media_Id) => {
+	try {
+		return axios.get(baseUrl + `/credits/${media_Type}/${media_Id}`)
+	} catch (error) {
+		return { error }
+	}
+}
