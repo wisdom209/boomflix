@@ -15,12 +15,12 @@ const ImageSwiper = ({ title, media }) => {
 		<>
 			{title == 'VIDEOS' ?
 
-				<swiper-container slides-per-view="1" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '500px' }}>
+				<swiper-container slides-per-view="1" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '550px' }}>
 					{media.map((v, i) => {
 						return <swiper-slide key={i} lazy="true">
 
 							<iframe className='video'
-								style={{ height: '450px', width: '90%', margin: '20px' }}
+								style={{ height: '500px', width: '95%', margin: '20px' }}
 								title='Youtube player'
 								sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
 								src={`https://youtube.com/embed/${v.key}?autoplay=0`}>
