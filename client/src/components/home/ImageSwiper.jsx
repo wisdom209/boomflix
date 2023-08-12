@@ -1,10 +1,6 @@
-import { PlayArrow } from "@mui/icons-material"
-import { useState } from "react"
-import MediaCard from "./MediaCard"
-import { useSelector } from "react-redux"
+import MediaCard from "./MediaCard";
 import 'swiper/css';
 import 'swiper/css/navigation';
-import ReactPlayer from "react-player";
 
 // import required modules
 import { Navigation } from 'swiper/modules';

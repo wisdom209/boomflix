@@ -31,25 +31,28 @@ const styles = {
 }
 
 export function MovieInfoBoxNoCast() {
+
+	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
+
 	return (
 		<Stack spacing={2}>
 			<Stack>
 				<Typography variant="h2" color="white" fontSize={40} mt={10} fontWeight={800}>
-					The Flash 2023
+					{mediaDetails.title || mediaDetails.original_name}
 				</Typography>
 			</Stack>
 
 			<Stack direction='row' spacing={2}>
 
-				<CircularRating rating='7.5' size={50} />
-				<Chip label="Animation" color="error" />
-				<Chip label="Family" color="error" />
+				<CircularRating rating={mediaDetails.vote_average.toFixed(1)} size={50} />
+				<Chip label={mediaDetails.genres[0].name || 'movie'} color="error" />
+				<Chip label={mediaDetails.genres[1].name || 'movie'} color="error" />
 
 			</Stack>
 
 			<Stack spacing={2}>
 				<Typography color="white">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, magni ab est minima, quaerat enim eaque culpa autem aspernatur rem eligendi obcaecati pariatur modi. Quos quas sit natus delectus incidunt.
+					{mediaDetails.overview}
 				</Typography>
 			</Stack>
 			<Stack direction='row' spacing={2} alignItems='center'>
@@ -65,7 +68,7 @@ export function MovieInfoBoxNoCast() {
 
 export function MovieInfoBox() {
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
-	console.log(mediaDetails)
+
 
 	return (<Stack spacing={3}>
 		<Stack>
@@ -78,7 +81,7 @@ export function MovieInfoBox() {
 
 			<CircularRating rating={mediaDetails.vote_average.toFixed(1)} size={50} />
 			<Chip label={mediaDetails.genres[0].name || 'movie'} color="error" />
-			<Chip label={mediaDetails.genres[1].name || 'movie'}color="error" />
+			<Chip label={mediaDetails.genres[1].name || 'movie'} color="error" />
 
 		</Stack>
 
