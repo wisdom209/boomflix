@@ -27,7 +27,15 @@ export const appSlice = createSlice({
 		},
 		setTopratedSeries: (state, action) => {
 			state.media['topratedSeries'] = action.payload
+		},		
+		setSimilar: (state, action) => {
+			state.media['similar'] = action.payload
 		},
+		setVideo: (state, action) => {
+			state.media['video'] = action.payload
+		},
+		
+		
 		setMediaDetail: (state, action) => {
 			state.media['mediaDetail'] = action.payload
 		}
@@ -37,7 +45,7 @@ export const appSlice = createSlice({
 
 export const { increment, decrement, incrementBy, decrementBy,
 	setPopularMovies, setPopularSeries, setTopratedSeries, setTopratedMovies,
-	setMediaDetail
+	setMediaDetail, setSimilar, setVideo
 } = appSlice.actions
 
 export default appSlice.reducer

@@ -70,3 +70,20 @@ export const getCast = (media_Type, media_Id) => {
 		return { error }
 	}
 }
+
+export const getVideos = (media_Type, media_Id) => {
+	try {
+		return axios.get(baseUrl + `/video/${media_Type}/${media_Id}`)
+	} catch (error) {
+		return { error }
+	}
+}
+
+export const getSimilar = (media_Type, media_Id) => {
+	try {
+		return axios.get(baseUrl + `/similar/${media_Type}/${media_Id}`)
+	} catch (error) {
+		return { error }
+	}
+}
+

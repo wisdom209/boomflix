@@ -4,22 +4,43 @@ import MediaCard from "./MediaCard"
 import { useSelector } from "react-redux"
 import 'swiper/css';
 import 'swiper/css/navigation';
+import ReactPlayer from "react-player";
 
 // import required modules
 import { Navigation } from 'swiper/modules';
 
 const ImageSwiper = ({ title, media }) => {
-
+	console.log(title)
 	return (
-		<swiper-container slides-per-view="3" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '300px' }}>
-			{media.map((v, i) => {
-				return <swiper-slide key={i} lazy="true">
+		<>
+			{title == 'VIDEOS' ?
 
-					<MediaCard media={v} />
+				<swiper-container slides-per-view="1" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '500px' }}>
+					{media.map((v, i) => {
+						return <swiper-slide key={i} lazy="true">
 
-				</swiper-slide>
-			})}
-		</swiper-container>
+							<iframe className='video'
+								style={{ height: '450px', width: '90%', margin: '20px' }}
+								title='Youtube player'
+								sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
+								src={`https://youtube.com/embed/${v.key}?autoplay=0`}>
+							</iframe>
+
+						</swiper-slide>
+					})}
+				</swiper-container>
+				:
+				<swiper-container slides-per-view="3" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '300px' }}>
+					{media.map((v, i) => {
+						return <swiper-slide key={i} lazy="true">
+
+							<MediaCard media={v} />
+
+						</swiper-slide>
+					})}
+				</swiper-container>
+			}</>
+
 	)
 }
 

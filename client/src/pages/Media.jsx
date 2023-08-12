@@ -3,16 +3,18 @@ import Header from "../components/global/Header"
 import Footer from "../components/global/Footer"
 import HeroBackground from '../components/media/HeroBackground'
 import MediaDescription from '../components/media/MediaDescription'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCast, getGenres, getMediaDetail } from '../api_client/axiosClient'
-import { setMediaDetail } from '../redux/features/appSlice'
+import { useDispatch } from 'react-redux'
+import { getCast, getMediaDetail, getSimilar, getVideos } from '../api_client/axiosClient'
+import { setMediaDetail, setSimilar, setVideo } from '../redux/features/appSlice'
 import Loading from './Loading'
-import { useState } from 'react'
-import { getGenreFromList } from '../components/home/HeroSwiper'
+import { useState } from "react"
+import MediaList from '../components/media/MediaList'
 
 const Media = () => {
 	const dispatch = useDispatch()
 	const [isLoaded, setIsLoaded] = useState(false)
+	const mediaType = 'movie'
+	const mediaId = 569094
 
 	useEffect(() => {
 		getMediaDetail('movie', 569094).then(response => {
@@ -21,12 +23,22 @@ const Media = () => {
 				const cast = resp.data.cast
 				response.data['cast'] = cast
 				dispatch(setMediaDetail(response.data))
-				setIsLoaded(true)
+
+				getVideos(mediaType, mediaId).then(response => {
+					dispatch(setVideo(response.data))
+
+					getSimilar(mediaType, mediaId).then(response => {
+						dispatch(setSimilar(response.data))
+
+						setIsLoaded(true)
+					})
+				})
+
 			})
+
 		})
+
 	}, [])
-
-
 
 	return (
 		<>
@@ -36,7 +48,7 @@ const Media = () => {
 					<HeroBackground>
 						<MediaDescription />
 					</HeroBackground>
-					{/* <MediaList /> */}
+					<MediaList />
 					<Footer />
 				</> : <Loading />
 			}

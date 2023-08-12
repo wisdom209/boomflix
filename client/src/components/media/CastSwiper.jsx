@@ -8,25 +8,28 @@ import {
 	Stack
 } from '@mui/material'
 import RedDivider from '../global/RedDivder'
+import { useSelector } from 'react-redux'
+import { buildImageUrl } from '../../api_client/axiosClient'
 
 const CastSwiper = ({ width }) => {
+	const cast = useSelector(state => state.global.media.mediaDetail.cast)
 	
 	return (
 		<Stack>
 			<Typography variant='h4' color="white">Cast</Typography>
 			<RedDivider />
 			<swiper-container slides-per-view="3" space-between="5" style={{ width: `${width}` }}>
-				{Array(10).fill('_').map((v, i) => <swiper-slide key={i}>
+				{cast.map((v, i) => <swiper-slide key={i}>
 					<Card sx={{ marginRight: "5px" }}>
 						<CardActionArea>
 							<swiper-container>
 								<swiper-slide>
 									<CardMedia
 										title='cast'
-										image={`https://picsum.photos/id/${Math.floor(Math.random() * 100) + 1}/500`} style={{ height: '200px' }}
+										image={buildImageUrl(v.profile_path)} style={{ height: '200px' }}
 									>
 										<Box sx={{ bgcolor: 'black', translate: '0px 175px', opacity: '0.8', textAlign: 'center' }} style={{ color: 'white' }}>
-											<Typography variant='subtitle1'>Jet Li</Typography>
+											<Typography variant='subtitle1'>{v.name}</Typography>
 										</Box>
 
 									</CardMedia>

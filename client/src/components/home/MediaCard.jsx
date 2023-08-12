@@ -37,7 +37,7 @@ const MediaCard = ({ media }) => {
 						<PlayArrow sx={{ color: 'white' }} />
 					</Box>
 					<Box sx={{ alignSelf: 'start', marginLeft: '20px', marginTop: '20px' }}>
-						<CircularRating rating={media.vote_average} size={50} />
+						<CircularRating rating={media.vote_average.toFixed(1)} size={50} />
 						<Typography color="white" fontWeight={700}>{media.release_date?.slice(0, 4) || media.first_air_date?.slice(0, 4)}</Typography>
 						<Typography color="white" fontWeight={700}>{media?.title || media.original_name}</Typography>
 					</Box>
