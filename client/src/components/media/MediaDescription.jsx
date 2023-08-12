@@ -121,7 +121,6 @@ const MediaDescription = () => {
 
 	console.log(mediaDetails)
 	return (
-
 		< Box style={styles.backgroundOverlay} >
 			<Hidden mdDown >
 				<Stack zIndex={1} direction="row" spacing={2} ml={5} >

@@ -29,8 +29,10 @@ const Media = () => {
 
 					getSimilar(mediaType, mediaId).then(response => {
 						dispatch(setSimilar(response.data))
-
-						setIsLoaded(true)
+						if (response.data.error)
+							setIsLoaded(false)
+						else
+							setIsLoaded(true)
 					})
 				})
 

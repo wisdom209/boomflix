@@ -18,7 +18,7 @@ const Home = () => {
 	const [trendingMovies, setTrendingMovies] = useState([])
 	const [mediaType, setMediaType] = useState('movie')
 	const [genres, setGenres] = useState([])
-	/* const [popularMovies, setPopularMovies] = useState([]) */
+	
 
 	let media = null
 	const dispatch = useDispatch()
@@ -58,24 +58,18 @@ const Home = () => {
 	return (
 		<Box>
 
-			
-				{trendingMovies && Object.keys(media).length >= 4 ? <Box>
-					<Header />
 
-					<HeroSwiper trendingMovies={trendingMovies} genres={genres} />
+			{trendingMovies && Object.keys(media).length >= 4 ? <Box>
+				<Header />
 
-					 <MediaList media={media} />
-					<Footer />
-				</Box> :
-					<Box>
-						<Header />
-						<Box sx={{ marginTop: '80px' }}>
-							<LinearProgress color="error" />
-						</Box>
+				<HeroSwiper trendingMovies={trendingMovies} genres={genres} />
 
-						<Loading />
-					</Box>}
-			
+				<MediaList media={media} />
+				<Footer />
+			</Box> :
+				<Loading />
+			}
+
 		</Box>
 
 	)

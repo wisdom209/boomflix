@@ -19,7 +19,7 @@ const HeroBackground = ({ children }) => {
 	const backdrop = buildImageUrl(mediaDetail.backdrop_path)
 	return (
 		<>
-			<Box sx={styles.box} style={{ color: 'white', overflowX: 'hidden' }}>
+			<Box sx={styles.box} style={{ color: 'white', overflowX: 'auto' }}>
 				<BackgroundHeroImg img={backdrop}/>
 
 				{children}

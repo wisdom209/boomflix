@@ -10,21 +10,23 @@ const MediaList = () => {
 
 	const similarMovies = useSelector(state => state.global.media.similar)
 	let videos = useSelector(state => state.global.media.video)
+	videos = videos.results.filter((v, i) => v.site == 'YouTube')
 
-	videos = videos.results.filter((v, i) => {
-		return v.site == 'YouTube'
-	})
 
-	console.log('vid', videos)
 	return (
-		<Stack mt={2} mb spacing={3}>
-			<MediaSubSection title="VIDEOS" media={videos} />
-			{/* 	<MediaSubSection title="BACKDROPS" />
+		<>
+			{similarMovies?.error == undefined &&
+				<Stack mt={2} mb spacing={3}>
+					<MediaSubSection title="VIDEOS" media={videos} />
+					{/* 	<MediaSubSection title="BACKDROPS" />
 			<MediaSubSection title="POSTERS" /> */}
-			<Box />
-			<Review />
-			{similarMovies && <MediaSubSection title="YOU MAY ALSO LIKE" media={similarMovies.results} />}
-		</Stack>
+					<Box />
+					<Review />
+					{similarMovies && <MediaSubSection title="YOU MAY ALSO LIKE" media={similarMovies.results} />}
+				</Stack>
+			}
+		</>
+
 
 	)
 }
