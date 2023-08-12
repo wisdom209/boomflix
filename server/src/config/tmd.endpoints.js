@@ -3,11 +3,12 @@ const endPoints = (mediaType, mediaId) => {
 		"trending": `/trending/${mediaType}/week`,
 		"popular": `/${mediaType}/popular/`,
 		"top-rated": `/${mediaType}/top_rated`,
-		"video": `/${mediaType}/${mediaId}/watch/providers`,
+		"video": `/${mediaType}/${mediaId}/videos`,
 		"genres": `/genre/${mediaType}/list`,
 		"credits": `/${mediaType}/${mediaId}/credits`,
 		"search": `/search/${mediaType}`,
-		"details": `/${mediaType}/${mediaId}`
+		"details": `/${mediaType}/${mediaId}`,
+		"similar": `/${mediaType}/${mediaId}/similar`
 	}
 }
 

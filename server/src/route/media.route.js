@@ -10,5 +10,6 @@ router.get('/search/:mediaType', mediaController.getSearch)
 router.get('/video/:mediaType/:mediaId', mediaController.getVideo)
 router.get('/credits/:mediaType/:mediaId', mediaController.getCredits)
 router.get('/details/:mediaType/:mediaId', mediaController.getDetails)
+router.get('/similar/:mediaType/:mediaId', mediaController.getSimilar)
 
 module.exports = router

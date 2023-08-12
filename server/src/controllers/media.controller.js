@@ -126,8 +126,23 @@ const getDetails = async (req, res) => {
 	}
 }
 
+const getSimilar = async (req, res) => {
+
+	try {
+		const { mediaType, mediaId } = req.params;
+
+		const detailsEndpoint = endPoints(mediaType, mediaId)['similar']
+		const details = await mediaAxios(detailsEndpoint)
+
+		handleResponse.ok(res, details)
+
+	} catch (error) {
+		handleResponse.error(res, error)
+	}
+}
+
 
 module.exports = {
-	getTrending, getPopular, getToprated,
+	getTrending, getPopular, getToprated, getSimilar,
 	getGenres, getVideo, getCredits, getSearch, getDetails
 }
