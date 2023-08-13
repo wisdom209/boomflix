@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Hidden } from '@mui/material'
 import BackgroundHeroImg from '../home/BackgroundHeroImg'
-import { MovieInfoBoxNoCast } from '../media/MediaDescription'
+import { MovieInfoBox, MovieInfoBoxNoCast } from '../media/MediaDescription'
 import CastSwiper from './CastSwiper'
 import { useSelector } from 'react-redux'
 import { buildImageUrl } from '../../api_client/axiosClient'
@@ -27,11 +27,11 @@ const HeroBackground = ({ children }) => {
 			</Box>
 			<Hidden mdUp>
 				
-				<MovieInfoBoxNoCast />
+				<MovieInfoBox />
 				
 				<Box m={8} />
 				
-				<CastSwiper width='30em'/>
+			
 				
 				<Box m={8} />
 			</Hidden>

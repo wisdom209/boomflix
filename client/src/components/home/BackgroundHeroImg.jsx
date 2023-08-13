@@ -7,7 +7,7 @@ const BackgroundHeroImg = ({ img }) => {
 			zIndex: 0,
 			position: 'absolute',
 		}}>
-			<CardMedia style={{
+			<CardMedia sx={{
 				width: '100vw',
 				height: '100vh',
 				objectFit: 'cover',

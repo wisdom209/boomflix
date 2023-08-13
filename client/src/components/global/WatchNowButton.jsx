@@ -5,7 +5,10 @@ import { PlayArrow } from '@mui/icons-material'
 const WatchNowButton = () => {
 	return (
 		<Stack>
-			<Button variant="contained" sx={{ bgcolor: 'red', width: '200px' }}>
+			<Button
+				onClick={()=>{}}
+				variant="contained"
+				sx={{ bgcolor: 'red', width: '200px' }}>
 				<PlayArrow /> Watch Now
 			</Button>
 		</Stack>

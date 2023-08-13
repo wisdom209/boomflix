@@ -9,6 +9,8 @@ import { setMediaDetail, setSimilar, setVideo } from '../redux/features/appSlice
 import Loading from './Loading'
 import { useState } from "react"
 import MediaList from '../components/media/MediaList'
+import CastSwiper from '../components/media/CastSwiper'
+import { Box } from '@mui/material'
 
 const Media = () => {
 	const dispatch = useDispatch()
@@ -47,6 +49,7 @@ const Media = () => {
 			{isLoaded ?
 				<>
 					<Header />
+					<Box />
 					<HeroBackground>
 						<MediaDescription />
 					</HeroBackground>

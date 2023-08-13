@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import MediaCard from "./MediaCard";
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,21 +11,23 @@ const ImageSwiper = ({ title, media }) => {
 	return (
 		<>
 			{title == 'VIDEOS' ?
+				<Box id="video_section" >
+					<swiper-container slides-per-view="1" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '550px' }}>
+						{media.map((v, i) => {
+							return <swiper-slide key={i} lazy="true">
 
-				<swiper-container slides-per-view="1" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '550px' }}>
-					{media.map((v, i) => {
-						return <swiper-slide key={i} lazy="true">
+								<iframe className='video'
 
-							<iframe className='video'
-								style={{ height: '500px', width: '95%', margin: '20px' }}
-								title='Youtube player'
-								sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
-								src={`https://youtube.com/embed/${v.key}?autoplay=0`}>
-							</iframe>
+									style={{ height: '500px', width: '95%', margin: '20px' }}
+									title='Youtube player'
+									sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
+									src={`https://youtube.com/embed/${v.key}?autoplay=0`}>
+								</iframe>
 
-						</swiper-slide>
-					})}
-				</swiper-container>
+							</swiper-slide>
+						})}
+					</swiper-container>
+				</Box>
 				:
 				<swiper-container slides-per-view="3" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '300px' }}>
 					{media.map((v, i) => {
