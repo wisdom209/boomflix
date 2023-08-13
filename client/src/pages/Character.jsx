@@ -1,56 +1,102 @@
 import React from 'react'
 import Header from '../components/global/Header'
 import Footer from '../components/global/Footer'
-import { Typography, Stack, Button } from '@mui/material'
+import { Typography, Stack, Button, Hidden } from '@mui/material'
 import ImageSwiper from '../components/home/ImageSwiper'
 import RedDivider from '../components/global/RedDivder'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Loading from './Loading'
+import { buildImageUrl, getPerson, getPersonCredits } from '../api_client/axiosClient'
+import { setPersonDetail } from '../redux/features/appSlice'
+
 
 const Character = () => {
+	const mediaId = 569094;
+	const personId = 587506;
+	const dispatch = useDispatch()
+
+
+	useEffect(() => {
+		getPerson(personId).then(response => {
+			const person_bio = response.data;
+			console.log('bio', person_bio)
+			getPersonCredits('movie', personId).then(res => {
+				const person_credits = res.data
+				console.log('cred', person_credits)
+				dispatch(setPersonDetail({ person_bio, person_credits }))
+			})
+		})
+	}, [])
+
+	const person = useSelector(state => state.global.media.personDetail)
+	console.log(person, Object.keys(person).length)
 	return (
 		<>
-			<Header />
+			{person == undefined || Object.keys(person).length != 2 ?
+				<Loading />
+				:
+				<>
+					<Header />
 
-			<Stack>
-				<Stack direction="row" spacing={5} margin="0px 100px" mt="100px" mb="100px"
-					sx={{ flexWrap: { xs: 'wrap', sm: 'nowrap' } }}
-				>
-					<img src="/jetli.jpeg" style={{
-						width: '300px',
-						height: '300px'
-					}} />
+					<Stack>
+						<Stack direction="row" spacing={5} margin="0px 100px" mt="100px" mb="100px"
+							sx={{ flexWrap: { xs: 'wrap', sm: 'nowrap' } }}
+						>
+							<img src={buildImageUrl(person?.person_bio.profile_path)} style={{
+								width: '300px',
+								height: '300px'
+							}} />
 
-					<Stack spacing={2}>
-						<Typography color="white" variant="h4">Chris Pratt (1979)</Typography>
+							<Stack spacing={2}>
+								<Typography color="white" variant="h4">{person?.person_bio.name} ({person?.person_bio.birthday.slice(0, 4)})</Typography>
 
-						<Typography color="white">
-							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, maxime neque! Ratione repellendus nesciunt officiis quas quae vitae animi minima vero sit, officia consequuntur dicta aliquid earum. Alias, vitae aperiam.
-						</Typography>
-					</Stack>
-				</Stack>
+								<Typography color="white">
+									{person?.person_bio.biography}
+								</Typography>
+							</Stack>
+						</Stack>
 
-				<Stack>
-					<Stack style={{ translate: '10px -20px' }}>
-						<Typography variant='h4' fontWeight={700} color="white">MEDIA</Typography>
-						<RedDivider />
-					</Stack>
+						<Stack>
+							<Stack style={{ translate: '10px -20px' }}>
+								<Typography variant='h4' fontWeight={700} color="white">MEDIA</Typography>
+								<RedDivider />
+							</Stack>
 
-					<Stack spacing={0}>
-						{Array(8).fill('_').map((v, i) => {
-							if (i % 4 == 0) {
-								return (<ImageSwiper key={i} />)
-							}
-						})}
-					</Stack>
+							<Hidden mdDown>
+								<Stack spacing={0}>
+									{person?.person_credits.cast.map((v, i) => {
+										if (i % 4 == 0) {
+											const mediaSubset = person?.person_credits.cast.slice(i, i + 4);
+											return (<ImageSwiper key={i} media={mediaSubset} />)
+										}
+									})}
+								</Stack>
+							</Hidden>
+							<Hidden mdUp>
+								<Stack spacing={0}>
+									{person?.person_credits.cast.map((v, i) => {
 
-					<Stack mt={5}>
-						<Button size='large' color="error">
-							<Typography fontWeight={800}>Load More</Typography>
-						</Button>
-					</Stack>
-				</Stack>
-			</Stack >
+										if (i % 4 == 0) {
+											const mediaSubset = person.person_credits.cast.slice(i, i + 4);
+											return (<ImageSwiper key={i} media={mediaSubset} slides={2} />)
+										}
 
-			<Footer />
+									})}
+								</Stack>
+							</Hidden>
+
+							<Stack mt={5}>
+								<Button size='large' color="error">
+									<Typography fontWeight={800}>Load More</Typography>
+								</Button>
+							</Stack>
+						</Stack>
+					</Stack >
+
+					<Footer />
+				</>
+			}
 		</>
 	)
 }

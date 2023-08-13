@@ -87,3 +87,19 @@ export const getSimilar = (media_Type, media_Id) => {
 	}
 }
 
+export const getPerson = (media_Id) => {
+	try {
+		return axios.get(baseUrl + `/person/${media_Id}`)
+	} catch (error) {
+		return { error }
+	}
+}
+
+export const getPersonCredits = (media_Type, media_Id) => {
+	try {
+		return axios.get(baseUrl + `/personCredits/${media_Type}/${media_Id}`)
+	} catch (error) {
+		return { error }
+	}
+}
+

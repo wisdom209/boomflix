@@ -11,7 +11,7 @@ const App = () => {
 	register();
 	return (
 		<>
-			<View />
+			<Character />
 		</>
 	)
 }
