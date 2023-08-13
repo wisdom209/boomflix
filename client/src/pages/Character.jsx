@@ -30,7 +30,7 @@ const Character = () => {
 	}, [])
 
 	const person = useSelector(state => state.global.media.personDetail)
-	console.log(person, Object.keys(person).length)
+	
 	return (
 		<>
 			{person == undefined || Object.keys(person).length != 2 ?

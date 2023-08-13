@@ -6,12 +6,14 @@ import View from './pages/View';
 import Character from './pages/Character';
 import Favorites from './pages/Favorites';
 import Reviews from './pages/Reviews';
+import {ToastContainer} from 'react-toastify'
 
 const App = () => {
 	register();
 	return (
 		<>
 			<Character />
+			<ToastContainer/>
 		</>
 	)
 }

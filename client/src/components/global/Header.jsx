@@ -6,7 +6,6 @@ import {
 import { useState } from 'react'
 import { LightModeOutlined } from '@mui/icons-material'
 import SignInModal from './SignInModal'
-import RegisterModal from '../global/RegisterModal'
 import { Favorite } from '@mui/icons-material'
 import { Reviews } from '@mui/icons-material'
 import { Password } from '@mui/icons-material'
@@ -17,6 +16,10 @@ import { Home } from '@mui/icons-material'
 import { Movie } from '@mui/icons-material'
 import { Tv } from '@mui/icons-material'
 import { SearchSharp } from '@mui/icons-material'
+import Cookies from 'js-cookie'
+import { setUsername } from '../../redux/features/appSlice'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 
@@ -130,7 +133,13 @@ function LoggedInUserMenu(props) {
 			<ListItemIcon>
 				<Logout />
 			</ListItemIcon>
-			<ListItemText>
+			<ListItemText onClick={() => {
+				Cookies.set('username', '')
+				props.handleCloseMenu()
+				toast('Logged out successfully', {
+					position: toast.POSITION.BOTTOM_LEFT
+				})
+			}}>
 				SIGN OUT
 			</ListItemText>
 		</MenuItem>
@@ -146,6 +155,11 @@ const Header = () => {
 	const openMenu = Boolean(anchorEl)
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 	const [signUpOpen, setSignUpOpen] = useState(false)
+	const dispatch = useDispatch()
+
+	dispatch(setUsername(Cookies.get('username')))
+
+	const username = useSelector(state => state.global.username)
 
 	const handleCloseMenu = () => {
 		setanchorEl(null)
@@ -165,19 +179,21 @@ const Header = () => {
 				<Toolbar >
 					<LargeScreenHeader />
 					<MediumScreenHeader isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
-
-					<Button
-						color="error"
-						variant="contained"
-						sx={{ marginLeft: 'auto' }}
-						onClick={() => setmodalOpen(true)}
-					>SIGN IN</Button>
-					{/* <Typography
-						variant="h5"
-						fontWeight={700}
-						sx={{ marginLeft: 'auto' }}
-						onClick={(e) => setanchorEl(e.currentTarget)}
-					>Wisdom209</Typography> */}
+					{
+						(username == false) ?
+							<Button
+								color="error"
+								variant="contained"
+								sx={{ marginLeft: 'auto' }}
+								onClick={() => setmodalOpen(true)}
+							>SIGN IN</Button> :
+							<Typography
+								variant="h5"
+								fontWeight={700}
+								sx={{ marginLeft: 'auto' }}
+								onClick={(e) => setanchorEl(e.currentTarget)}
+							>{username}</Typography>
+					}
 				</Toolbar>
 			</AppBar>
 

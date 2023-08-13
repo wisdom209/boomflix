@@ -103,3 +103,22 @@ export const getPersonCredits = (media_Type, media_Id) => {
 	}
 }
 
+/* User functions */
+
+export const loginUser = (username, password) => {
+	try {
+		return axios.post(baseUrl + '/login', { username, password })
+	} catch (error) {
+		return ({ error })
+	}
+}
+export const registerUser = (username, password) => {
+	try {
+		return axios.post(baseUrl + '/register', { username, password })
+	} catch (error) {
+		return ({ error })
+	}
+}
+
+
+
