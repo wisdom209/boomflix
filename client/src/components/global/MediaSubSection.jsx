@@ -6,7 +6,7 @@ import { useSelector } from "react-redux"
 
 const MediaSubSection = ({ title, media }) => {
 	return (
-		<Box >
+		<Box id={title=='VIDEOS' && 'video_section'} >
 			<Typography sx={{
 				fontWeight: '800',
 				fontSize: '30px',

@@ -11,7 +11,7 @@ const ImageSwiper = ({ title, media }) => {
 	return (
 		<>
 			{title == 'VIDEOS' ?
-				<Box id="video_section" >
+				<Box>
 					<swiper-container slides-per-view="1" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '550px' }}>
 						{media.map((v, i) => {
 							return <swiper-slide key={i} lazy="true">
