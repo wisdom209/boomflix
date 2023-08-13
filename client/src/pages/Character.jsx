@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/global/Header'
 import Footer from '../components/global/Footer'
-import { Typography, Stack, Button, Hidden } from '@mui/material'
+import { Typography, Stack, Button, Hidden, Box } from '@mui/material'
 import ImageSwiper from '../components/home/ImageSwiper'
 import RedDivider from '../components/global/RedDivder'
 import { useEffect } from 'react'
@@ -41,14 +41,15 @@ const Character = () => {
 
 					<Stack>
 						<Stack direction="row" spacing={5} margin="0px 100px" mt="100px" mb="100px"
-							sx={{ flexWrap: { xs: 'wrap', sm: 'nowrap' } }}
+							sx={{ flexWrap: { xs: 'wrap', sm: 'wrap', md: 'nowrap' } }}
 						>
 							<img src={buildImageUrl(person?.person_bio.profile_path)} style={{
-								width: '300px',
-								height: '300px'
+								width: '100%',
+								height: '400px',
+								marginBottom: '20px'
 							}} />
 
-							<Stack spacing={2}>
+							<Stack spacing={2} style={{ translate: '-30px' }}>
 								<Typography color="white" variant="h4">{person?.person_bio.name} ({person?.person_bio.birthday.slice(0, 4)})</Typography>
 
 								<Typography color="white">
@@ -86,11 +87,12 @@ const Character = () => {
 								</Stack>
 							</Hidden>
 
-							<Stack mt={5}>
+							{/* <Stack mt={5}>
 								<Button size='large' color="error">
 									<Typography fontWeight={800}>Load More</Typography>
 								</Button>
-							</Stack>
+							</Stack> */}
+							<Box mb={2}/>
 						</Stack>
 					</Stack >
 
