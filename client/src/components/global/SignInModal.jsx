@@ -28,6 +28,7 @@ const SignInModal = ({ modalOpen, setmodalOpen }) => {
 					</Stack>
 					<Stack spacing={2} >
 						<TextField
+							error={isError}
 							type='text'
 							label="Username"
 							required
@@ -76,13 +77,21 @@ const SignInModal = ({ modalOpen, setmodalOpen }) => {
 										console.log(response.data)
 										setUsername('')
 										setPassword('')
-										setmodalOpen(false)
+										toast("Sign up successful!", {
+											position: toast.POSITION.BOTTOM_LEFT,
+											style: { zIndex: 30 }
+										});
+										setIsRegister(false)
+									}).catch(err => {
+										setIsError(true)
+										setHelperText(err.response.data)
+										console.log(err.response.data)
 									})
 
 								} else {
 									/* sign up user */
 									loginUser(username, password).then(response => {
-										
+
 										toast("Logged in successfully!", {
 											position: toast.POSITION.BOTTOM_LEFT,
 											style: { zIndex: 30 }
