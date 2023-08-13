@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 // import required modules
 import { Navigation } from 'swiper/modules';
 
-const ImageSwiper = ({ title, media }) => {
+const ImageSwiper = ({ title, media, slides }) => {
 	console.log(title)
 	return (
 		<>
@@ -29,7 +29,7 @@ const ImageSwiper = ({ title, media }) => {
 					</swiper-container>
 				</Box>
 				:
-				<swiper-container slides-per-view="3" navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '300px' }}>
+				<swiper-container slides-per-view={slides || "3"} navigation={true} modules={[Navigation]} className="mySwiper" style={{ height: '300px' }}>
 					{media.map((v, i) => {
 						return <swiper-slide key={i} lazy="true">
 

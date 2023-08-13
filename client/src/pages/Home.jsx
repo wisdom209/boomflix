@@ -51,9 +51,6 @@ const Home = () => {
 	}, [])
 
 	media = useSelector(state => state.global.media)
-	const [display, setDisplay] = useState(null)
-
-
 
 	return (
 		<Box>

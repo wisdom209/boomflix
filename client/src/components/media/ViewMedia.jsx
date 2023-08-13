@@ -4,8 +4,15 @@ import { Typography, Stack, Box, Button, Hidden } from '@mui/material'
 import ImageSwiper from '../home/ImageSwiper'
 import RedDivider from '../global/RedDivder'
 import { MovieInfoBox, MovieInfoBoxNoCast } from './MediaDescription'
+import { useSelector } from 'react-redux'
+import { buildImageUrl } from '../../api_client/axiosClient'
 
 const ViewMedia = () => {
+	let media = useSelector(state => state.global.media.popularMovies)
+	const mediaDetail = useSelector(state => state.global.media.mediaDetail)
+	console.log("media", mediaDetail)
+	const poster = buildImageUrl(mediaDetail.poster_path)
+
 	return (
 		<Box>
 			<Stack >
@@ -23,37 +30,54 @@ const ViewMedia = () => {
 						}}>
 							<Hidden mdDown>
 								<Stack zIndex={3} direction="row" spacing={2} mt={10}>
-									<img src="/jetli.jpeg" width='100%' />
+									<img src={poster} width='30%' />
 									<MovieInfoBoxNoCast />
 								</Stack>
 							</Hidden>
 							<Hidden mdUp>
 								<Stack zIndex={3} direction="row" spacing={2} mt={1} width="100vw" sx={{ display: 'grid', placeContent: 'center' }}>
-									<img src="/jetli.jpeg" width='100%' height="400px" />
+									<img src={poster} width='100%' height="400px" />
 								</Stack>
 							</Hidden>
 						</Box>
 					</HeroBackground>
 				</Box>
-				
+
 
 				<Stack style={{ translate: '0px -20px' }}>
 					<Typography variant='h4' fontWeight={700} color="white">VIDEOS</Typography>
 					<RedDivider />
 				</Stack>
+				<Hidden mdUp>
+					<Stack spacing={0}>
+						{media.map((v, i) => {
 
-				<Stack spacing={0}>
-					{Array(16).fill('_').map((v, i) => {
-						if (i % 4 == 0) {
-							return (<ImageSwiper key={i} />)
-						}
-					})}
-				</Stack>
+							if (i % 4 == 0) {
+								const mediaSubset = media.slice(i, i + 4);
+								return (<ImageSwiper key={i} media={mediaSubset} slides={2}/>)
+							}
+
+						})}
+					</Stack>
+				</Hidden>
+				<Hidden mdDown>
+					<Stack spacing={0}>
+						{media.map((v, i) => {
+
+							if (i % 4 == 0) {
+								const mediaSubset = media.slice(i, i + 4);
+								return (<ImageSwiper key={i} media={mediaSubset} />)
+							}
+
+						})}
+					</Stack>
+				</Hidden>
+
 
 				<Stack mt={5}>
-					<Button size='large' color="error">
+					{/* <Button size='large' color="error">
 						<Typography fontWeight={800}>Load More</Typography>
-					</Button>
+					</Button> */}
 				</Stack>
 
 			</Stack>
