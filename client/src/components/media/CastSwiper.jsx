@@ -10,19 +10,27 @@ import {
 import RedDivider from '../global/RedDivder'
 import { useSelector } from 'react-redux'
 import { buildImageUrl } from '../../api_client/axiosClient'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const CastSwiper = ({ width, slides }) => {
 	const cast = useSelector(state => state.global.media.mediaDetail.cast)
-	
+	const location = useLocation()
+	const navigate = useNavigate()
+	const mediaType = location.pathname.split('/')[2]
+
 	return (
 		<Stack>
 			<Typography variant='h4' color="white">Cast</Typography>
 			<RedDivider />
-			<swiper-container slides-per-view={slides} space-between="5" 
-			style={{ width: `${width}`}}>
+			<swiper-container slides-per-view={slides} space-between="5"
+				style={{ width: `${width}` }}>
 				{cast.map((v, i) => <swiper-slide key={i}>
 					<Card sx={{ marginRight: "5px" }}>
-						<CardActionArea>
+						<CardActionArea
+							onClick={() => {
+								navigate(`/character/${mediaType}/${v.id}`)
+							}}
+						>
 							<swiper-container>
 								<swiper-slide>
 									<CardMedia

@@ -11,17 +11,22 @@ import { useState } from "react"
 import MediaList from '../components/media/MediaList'
 import CastSwiper from '../components/media/CastSwiper'
 import { Box } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 
 const Media = () => {
 	const dispatch = useDispatch()
 	const [isLoaded, setIsLoaded] = useState(false)
-	const mediaType = 'movie'
-	const mediaId = 569094
+
+	const location = useLocation()
+
+	const mediaType = location.pathname.split('/')[2]
+	const mediaId = location.pathname.split('/')[3]
+
 
 	useEffect(() => {
-		getMediaDetail('movie', 569094).then(response => {
+		getMediaDetail(mediaType, mediaId).then(response => {
 
-			getCast('movie', 569094).then(resp => {
+			getCast(mediaType, mediaId).then(resp => {
 				const cast = resp.data.cast
 				response.data['cast'] = cast
 				dispatch(setMediaDetail(response.data))

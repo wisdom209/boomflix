@@ -9,28 +9,29 @@ import { useSelector, useDispatch } from 'react-redux'
 import Loading from './Loading'
 import { buildImageUrl, getPerson, getPersonCredits } from '../api_client/axiosClient'
 import { setPersonDetail } from '../redux/features/appSlice'
+import { useLocation } from 'react-router-dom'
 
 
 const Character = () => {
-	const mediaId = 569094;
-	const personId = 587506;
+	const location = useLocation()
+	/* const mediaId = 569094; */
+	const personId = location.pathname.split('/')[3]  /* 587506; */
+	const mediaType = location.pathname.split('/')[2]  /* 587506; */
 	const dispatch = useDispatch()
 
 
 	useEffect(() => {
 		getPerson(personId).then(response => {
 			const person_bio = response.data;
-			console.log('bio', person_bio)
-			getPersonCredits('movie', personId).then(res => {
+			getPersonCredits(`${mediaType}`, personId).then(res => {
 				const person_credits = res.data
-				console.log('cred', person_credits)
 				dispatch(setPersonDetail({ person_bio, person_credits }))
 			})
 		})
 	}, [])
 
 	const person = useSelector(state => state.global.media.personDetail)
-	
+
 	return (
 		<>
 			{person == undefined || Object.keys(person).length != 2 ?
@@ -60,7 +61,7 @@ const Character = () => {
 
 						<Stack>
 							<Stack style={{ translate: '10px -20px' }}>
-								<Typography variant='h4' fontWeight={700} color="white">MEDIA</Typography>
+								<Typography variant='h4' fontWeight={700} color="white">ALSO IN</Typography>
 								<RedDivider />
 							</Stack>
 
@@ -92,7 +93,7 @@ const Character = () => {
 									<Typography fontWeight={800}>Load More</Typography>
 								</Button>
 							</Stack> */}
-							<Box mb={2}/>
+							<Box mb={2} />
 						</Stack>
 					</Stack >
 

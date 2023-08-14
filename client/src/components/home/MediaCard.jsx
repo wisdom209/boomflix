@@ -4,15 +4,22 @@ import { PlayArrow } from '@mui/icons-material'
 import CircularRating from '../global/CircularRating'
 import { useState } from 'react'
 import { buildImageUrl } from '../../api_client/axiosClient'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const MediaCard = ({ media }) => {
 	const [isHovered, setIsHovered] = useState(false)
+	const navigate = useNavigate()
+	const location = useLocation()
+	const mediaType = location.pathname.split('/')[2]
 
 	return (
 		<Card style={{ position: 'relative', background: 'black' }}>
 			<CardActionArea
 				onMouseOver={() => setIsHovered(true)}
 				onMouseOut={() => setIsHovered(false)}
+				onClick={() => {
+					navigate(`/media/${mediaType}/${media.id}`)
+				}}
 			>
 				<CardMedia
 					sx={{ objectFit: 'cover', width: '500px', margin: '0px', background: 'black' }}

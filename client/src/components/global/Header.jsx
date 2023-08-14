@@ -135,6 +135,7 @@ function LoggedInUserMenu(props) {
 			</ListItemIcon>
 			<ListItemText onClick={() => {
 				Cookies.set('username', '')
+				Cookies.set('token', '')
 				props.handleCloseMenu()
 				toast('Logged out successfully', {
 					position: toast.POSITION.BOTTOM_LEFT

@@ -34,7 +34,7 @@ export const getGenreFromList = (genreList, genreIds) => {
 }
 
 const HeroSwiper = ({ genres, trendingMovies }) => {
-	
+
 	return (
 		<swiper-container navigation={true} modules={[Navigation]} className="mySwiper" >
 			{trendingMovies !== undefined && trendingMovies.map((v, i) =>
@@ -46,7 +46,7 @@ const HeroSwiper = ({ genres, trendingMovies }) => {
 								overview={v.overview}
 								vote_average={v.vote_average}
 								genres={getGenreFromList(genres, v.genre_ids)} />
-							<WatchNowButton />
+							<WatchNowButton videoId={v.id} videoType='movie' />
 						</Stack>
 
 					</Box>
