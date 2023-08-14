@@ -28,7 +28,7 @@ const styles = {
 export const getGenreFromList = (genreList, genreIds) => {
 	const new_list = genreList.filter((v, i) => {
 
-		return genreIds.includes(v.id)
+		return genreIds.includes(Number(v.id))
 	})
 	return new_list
 }

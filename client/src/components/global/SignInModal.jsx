@@ -74,7 +74,7 @@ const SignInModal = ({ modalOpen, setmodalOpen }) => {
 								if (isRegister) {
 									/* register user */
 									registerUser(username, password).then(response => {
-										console.log(response.data)
+								
 										setUsername('')
 										setPassword('')
 										toast("Sign up successful!", {
@@ -84,7 +84,7 @@ const SignInModal = ({ modalOpen, setmodalOpen }) => {
 									}).catch(err => {
 										setIsError(true)
 										setHelperText(err.response.data)
-										console.log(err.response.data)
+										
 									})
 
 								} else {
@@ -111,7 +111,7 @@ const SignInModal = ({ modalOpen, setmodalOpen }) => {
 									}).catch(err => {
 										setIsError(true)
 										setHelperText(err.response.data)
-										console.log(err.response.data)
+									
 									})
 								}
 							}}

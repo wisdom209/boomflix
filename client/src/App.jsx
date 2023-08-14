@@ -16,7 +16,7 @@ const App = () => {
 			<Router>
 				<Routes>
 					<Route index element={<Home />}></Route>
-					<Route path="/view/:media_type/:media_id" element={<View />}></Route>
+					<Route path="/view/:media_type" element={<View />}></Route>
 					<Route path="/character/:media_type/:media_id" element={<Character />}></Route>
 					<Route path="/favorites" element={<Favorites />}></Route>
 					<Route path="/reviews" element={<Reviews />}></Route>

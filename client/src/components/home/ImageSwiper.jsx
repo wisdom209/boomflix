@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 const ImageSwiper = ({ title, media, slides }) => {
-	console.log(title)
+	
 	return (
 		<>
 			{title == 'VIDEOS' ?

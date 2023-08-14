@@ -14,7 +14,6 @@ import { useLocation } from 'react-router-dom'
 
 const Character = () => {
 	const location = useLocation()
-	/* const mediaId = 569094; */
 	const personId = location.pathname.split('/')[3]  /* 587506; */
 	const mediaType = location.pathname.split('/')[2]  /* 587506; */
 	const dispatch = useDispatch()

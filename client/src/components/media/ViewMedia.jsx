@@ -7,10 +7,10 @@ import { MovieInfoBox, MovieInfoBoxNoCast } from './MediaDescription'
 import { useSelector } from 'react-redux'
 import { buildImageUrl } from '../../api_client/axiosClient'
 
-const ViewMedia = () => {
+const ViewMedia = ({ type, subtype }) => {
 	let media = useSelector(state => state.global.media.popularMovies)
 	const mediaDetail = useSelector(state => state.global.media.mediaDetail)
-	console.log("media", mediaDetail)
+	
 	const poster = buildImageUrl(mediaDetail.poster_path)
 
 	return (
@@ -54,7 +54,7 @@ const ViewMedia = () => {
 
 							if (i % 4 == 0) {
 								const mediaSubset = media.slice(i, i + 4);
-								return (<ImageSwiper key={i} media={mediaSubset} slides={2}/>)
+								return (<ImageSwiper key={i} media={mediaSubset} slides={2} />)
 							}
 
 						})}

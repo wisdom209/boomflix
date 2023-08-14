@@ -20,19 +20,27 @@ import Cookies from 'js-cookie'
 import { setUsername } from '../../redux/features/appSlice'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
+import { useNavigate } from 'react-router-dom'
 
 
 function LargeScreenHeader() {
+	const navigate = useNavigate()
+
 	return (<Hidden mdDown={true}>
 		<Stack direction='row' spacing={2}>
 			<Typography variant="h4" sx={{
 				flexGrow: 1
 			}}>BoomFlix</Typography>
 
-			<Button variant='text' color="inherit" component='a'>HOME</Button>
+			<Button variant='text' color="inherit" component='a'
+				onClick={() => { navigate('/') }}
+			>HOME</Button>
 
-			<Button variant='text' color="inherit" component='a'>MOVIES</Button>
+			<Button variant='text' color="inherit" component='a'
+				onClick={() => {
+					navigate(`/view/movie`)
+				}}
+			>MOVIES</Button>
 
 			<Button variant='text' color="inherit" component='a'>TV SERIES</Button>
 

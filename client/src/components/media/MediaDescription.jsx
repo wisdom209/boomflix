@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { buildImageUrl } from '../../api_client/axiosClient'
 import { PlayArrow } from '@mui/icons-material'
 import { useState } from 'react'
+import { getGenreFromList } from '../home/HeroSwiper'
 
 
 const styles = {
@@ -30,9 +31,9 @@ const styles = {
 }
 
 export function MovieInfoBoxNoCast() {
-
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
-
+	const genreList = useSelector(state => state.global.genres)
+	
 	return (
 		<Stack spacing={2}>
 			<Stack>
@@ -44,8 +45,8 @@ export function MovieInfoBoxNoCast() {
 			<Stack direction='row' spacing={2}>
 
 				<CircularRating rating={mediaDetails?.vote_average.toFixed(1)} size={50} />
-				<Chip label={mediaDetails?.genres[0].name || 'movie'} color="error" />
-				<Chip label={mediaDetails?.genres[1].name || 'movie'} color="error" />
+				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[0].name || 'movie'} color="error" />
+				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[1].name || 'movie'} color="error" />
 
 			</Stack>
 
@@ -76,6 +77,9 @@ export function MovieInfoBoxNoCast() {
 export function MovieInfoBox() {
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
 
+	const genreList = useSelector(state => state.global.genres)
+
+
 	return (
 
 		<Stack spacing={3}>
@@ -88,8 +92,11 @@ export function MovieInfoBox() {
 			<Stack direction='row' spacing={2}>
 
 				<CircularRating rating={mediaDetails.vote_average.toFixed(1)} size={50} />
-				<Chip label={mediaDetails.genres[0].name || 'movie'} color="error" />
-				<Chip label={mediaDetails.genres[1].name || 'movie'} color="error" />
+			
+
+				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[0].name || 'movie'} color="error" />
+				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[1].name || 'movie'} color="error" />
+
 
 			</Stack>
 
@@ -145,7 +152,7 @@ const MediaDescription = () => {
 						<CardMedia
 							sx={{
 								height: '450px',
-								width: { xs: '28rem', sm: '40rem'},
+								width: { xs: '28rem', sm: '40rem' },
 								marginTop: '130px',
 							}}
 							component='img'

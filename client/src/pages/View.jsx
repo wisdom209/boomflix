@@ -5,34 +5,34 @@ import Header from '../components/global/Header'
 import Footer from '../components/global/Footer'
 import { useSelector, useDispatch } from 'react-redux'
 import { getGenres, getMediaDetail, getPopularMovies, getPopularSeries, getTopratedMovies, getTopratedSeries, getTrending } from '../api_client/axiosClient'
-import { setMediaDetail, setPopularMovies, setPopularSeries, setTopratedMovies, setTopratedSeries } from '../redux/features/appSlice'
+import { setGenres, setMediaDetail, setPopularMovies, setPopularSeries, setTopratedMovies, setTopratedSeries } from '../redux/features/appSlice'
 import Loading from './Loading'
+import { useLocation } from 'react-router-dom'
 
 
 const View = () => {
-
+	const dispatch = useDispatch()
+	const location = useLocation()
 	const [trendingMovies, setTrendingMovies] = useState([])
-	const [mediaType, setMediaType] = useState('movie')
-	const [genres, setGenres] = useState([])
+	const mediaType = location.pathname.split('/')[2]
+	const [subtype, setSubtype] = useState('popular')
 
 
 	let media = null
-	const dispatch = useDispatch()
 
 
 
 	useEffect(() => {
-
-		getMediaDetail('movie', 569094).then(response => {
-			dispatch(setMediaDetail(response.data))
-		})
 		getTrending(mediaType).then(response => {
 			setTrendingMovies(response.data.results)
+			const random = Math.floor(Math.random() * response.data.results.length)
+			dispatch(setMediaDetail(response.data.results[random]))
 		})
 
 		getGenres(mediaType).then(response => {
-			setGenres(response.data.genres)
-		})
+			console.log('wht')
+			dispatch(setGenres(response.data.genres))
+		}).catch(e => console.log('e', { e }))
 
 		getPopularMovies().then(response => {
 			dispatch(setPopularMovies(response.data.results))
@@ -53,7 +53,8 @@ const View = () => {
 	}, [])
 
 	media = useSelector(state => state.global.media)
-	console.log(media)
+
+
 	return (
 		<>
 
@@ -66,17 +67,25 @@ const View = () => {
 							<Stack direction="row" spacing={2} justifyContent='space-between' width='100vw' px={5}>
 								<Button variant='text' style={{ color: 'white', fontWeight: 700, fontSize: '20px' }}>
 									<Typography variant='h5' fontWeight={700}>
-										MOVIES
+										{`${mediaType}`.toUpperCase()}
 									</Typography>
 								</Button>
 
 								<Stack direction='row' spacing={2}>
-									<Button style={{ color: 'white', background: 'red', marginBottom: '10px' }}>
+									<Button style={{ color: 'white', background: 'red', marginBottom: '10px' }}
+										onClick={() => {
+											setSubtype('popular')
+										}}
+									>
 										<Typography>
 											POPULAR
 										</Typography>
 									</Button>
-									<Button style={{ color: 'white', background: 'red', marginBottom: '10px' }}>
+									<Button style={{ color: 'white', background: 'red', marginBottom: '10px' }}
+										onClick={() => {
+											setSubtype('toprated')
+										}}
+									>
 										<Typography>
 											TOP RATED
 										</Typography>
@@ -85,7 +94,7 @@ const View = () => {
 							</Stack>
 						</Box>
 
-						<ViewMedia />
+						<ViewMedia type={mediaType} subtype={subtype} />
 						<Footer />
 					</>
 					:

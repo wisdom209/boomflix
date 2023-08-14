@@ -9,7 +9,7 @@ import {
 	getTopratedMovies, getTopratedSeries
 } from "../api_client/axiosClient"
 import { useDispatch, useSelector } from 'react-redux'
-import { setPopularMovies, setPopularSeries, setTopratedMovies, setTopratedSeries } from "../redux/features/appSlice"
+import { setGenres, setPopularMovies, setPopularSeries, setTopratedMovies, setTopratedSeries } from "../redux/features/appSlice"
 import Loading from "./Loading"
 
 
@@ -17,8 +17,8 @@ const Home = () => {
 
 	const [trendingMovies, setTrendingMovies] = useState([])
 	const [mediaType, setMediaType] = useState('movie')
-	const [genres, setGenres] = useState([])
-	
+	const [genres, setGenress] = useState([])
+
 
 	let media = null
 	const dispatch = useDispatch()
@@ -29,7 +29,8 @@ const Home = () => {
 		})
 
 		getGenres(mediaType).then(response => {
-			setGenres(response.data.genres)
+			setGenress(response.data.genres)
+			dispatch(setGenres(response.data.genres))
 		})
 
 		getPopularMovies().then(response => {
