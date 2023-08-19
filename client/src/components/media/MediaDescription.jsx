@@ -112,9 +112,6 @@ export function MovieInfoBox() {
 
 				<Stack>
 					<Button
-						onClick={() => {
-							alert('hello')
-						}}
 						component="a"
 						href='#video_section'
 						variant="contained"
