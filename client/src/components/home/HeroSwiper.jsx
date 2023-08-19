@@ -27,21 +27,27 @@ const styles = {
 
 export const getGenreFromList = (genreList, genreIds) => {
 
+	try {
+		if (!Array.isArray(genreList)) {
+			genreList = genreList.genres
+			return genreList
+		}
 
-	if (!Array.isArray(genreList)) {
-		genreList = genreList.genres
+		if (!genreIds) {
+			return [{ name: 'show' }, { name: 'tv' }]
+		}
+
+		const new_list = genreList.filter((v, i) => {
+
+			return genreIds.includes(Number(v.id))
+		})
+
+		return new_list
+	} catch (error) {
+
+		console.log('error', error.message)
+		return [{ name: 'show' }, { name: 'tv' }]
 	}
-
-	if (!genreIds) {
-		return [{ name: 'undefined' }, { name: 'undefined' }]
-	}
-
-	const new_list = genreList.filter((v, i) => {
-
-		return genreIds.includes(Number(v.id))
-	})
-
-	return new_list
 }
 
 const HeroSwiper = ({ genres, trendingMovies }) => {

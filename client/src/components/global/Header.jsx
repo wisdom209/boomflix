@@ -56,6 +56,8 @@ function LargeScreenHeader() {
 }
 
 function MediumScreenHeader(props) {
+	const navigate = useNavigate()
+
 	return (<Hidden mdUp={true}>
 
 		<Stack direction='row' spacing={2}>
@@ -75,7 +77,7 @@ function MediumScreenHeader(props) {
 					<Typography mx={2} variant='h2'>BoomFlix</Typography>
 				</ListItemText>
 
-				<MenuItem>
+				<MenuItem onClick={() => { navigate('/') }}>
 					<ListItemIcon>
 						<Home />
 					</ListItemIcon>
@@ -83,7 +85,7 @@ function MediumScreenHeader(props) {
 						HOME
 					</ListItemText>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem onClick={() => { navigate('/view/movie') }}>
 					<ListItemIcon>
 						<Movie />
 					</ListItemIcon>
@@ -91,7 +93,7 @@ function MediumScreenHeader(props) {
 						MOVIES
 					</ListItemText>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem onClick={() => { navigate('/view/tv') }}>
 					<ListItemIcon>
 						<Tv />
 					</ListItemIcon>
@@ -165,7 +167,6 @@ const Header = () => {
 	const [anchorEl, setanchorEl] = useState(null)
 	const openMenu = Boolean(anchorEl)
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-	const [signUpOpen, setSignUpOpen] = useState(false)
 	const dispatch = useDispatch()
 
 	dispatch(setUsername(Cookies.get('username')))

@@ -2,7 +2,7 @@ import Header from "../components/global/Header"
 import MediaList from "../components/home/MediaList"
 import HeroSwiper from "../components/home/HeroSwiper"
 import Footer from "../components/global/Footer"
-import { Box, LinearProgress } from "@mui/material"
+import { Box } from "@mui/material"
 import { useEffect, useState } from "react"
 import {
 	getGenres, getPopularMovies, getPopularSeries, getTrending,
@@ -14,6 +14,7 @@ import {
 	setTopratedMovies, setTopratedSeries
 } from "../redux/features/appSlice"
 import Loading from "./Loading"
+import { useLocation } from "react-router-dom"
 
 
 const Home = () => {
@@ -51,7 +52,7 @@ const Home = () => {
 			dispatch(setTopratedSeries(response.data.results))
 		})
 
-	}, [])
+	}, [useLocation()])
 
 	media = useSelector(state => state.global.media)
 

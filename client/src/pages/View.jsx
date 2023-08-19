@@ -68,7 +68,7 @@ const View = () => {
 									</Typography>
 								</Button>
 
-								<Stack direction='row' spacing={2}>
+								{/* <Stack direction='row' spacing={2}>
 									<Button style={{ color: 'white', background: 'red', marginBottom: '10px' }}
 										onClick={() => {
 											setSubtype('popular')
@@ -87,11 +87,11 @@ const View = () => {
 											TOP RATED
 										</Typography>
 									</Button>
-								</Stack>
+								</Stack> */}
 							</Stack>
 						</Box>
 
-						<ViewMedia type={mediaType} subtype={subtype} />
+						<ViewMedia mediaList={mediaType == 'movie' ? media.popularMovies : media.popularSeries} type={mediaType} subtype={subtype} />
 						<Footer />
 					</>
 					:

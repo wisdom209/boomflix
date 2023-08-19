@@ -7,8 +7,8 @@ import { MovieInfoBox, MovieInfoBoxNoCast } from './MediaDescription'
 import { useSelector } from 'react-redux'
 import { buildImageUrl } from '../../api_client/axiosClient'
 
-const ViewMedia = ({ type, subtype }) => {
-	let media = useSelector(state => state.global.media.popularMovies)
+const ViewMedia = ({ mediaList, type, subtype }) => {
+	let media = mediaList
 	const mediaDetail = useSelector(state => state.global.media.mediaDetail)
 	
 	const poster = buildImageUrl(mediaDetail.poster_path)
