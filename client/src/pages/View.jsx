@@ -17,10 +17,7 @@ const View = () => {
 	const mediaType = location.pathname.split('/')[2]
 	const [subtype, setSubtype] = useState('popular')
 
-
 	let media = null
-
-
 
 	useEffect(() => {
 		getTrending(mediaType).then(response => {
@@ -30,7 +27,7 @@ const View = () => {
 		})
 
 		getGenres(mediaType).then(response => {
-			console.log('wht')
+
 			dispatch(setGenres(response.data.genres))
 		}).catch(e => console.log('e', { e }))
 
@@ -50,7 +47,7 @@ const View = () => {
 			dispatch(setTopratedSeries(response.data.results))
 		})
 
-	}, [])
+	}, [location])
 
 	media = useSelector(state => state.global.media)
 

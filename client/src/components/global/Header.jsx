@@ -42,7 +42,9 @@ function LargeScreenHeader() {
 				}}
 			>MOVIES</Button>
 
-			<Button variant='text' color="inherit" component='a'>TV SERIES</Button>
+			<Button variant='text' color="inherit" component='a' onClick={() => {
+				navigate(`/view/tv`)
+			}}>TV SERIES</Button>
 
 			<Button variant='text' color="inherit" component='a'>SEARCH</Button>
 

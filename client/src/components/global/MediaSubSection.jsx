@@ -4,7 +4,7 @@ import ImageSwiper from '../home/ImageSwiper'
 import RedDivider from '../global/RedDivder'
 import { useSelector } from "react-redux"
 
-const MediaSubSection = ({ title, media }) => {
+const MediaSubSection = ({ title, media, type }) => {
 	return (
 		<Box id={title == 'VIDEOS' ? 'video_section' : undefined} >
 			<Typography sx={{
@@ -19,7 +19,7 @@ const MediaSubSection = ({ title, media }) => {
 
 			<RedDivider />
 
-			<ImageSwiper title={title} media={media} />
+			<ImageSwiper title={title} media={media} type={type} />
 		</Box>
 	)
 }

@@ -29,10 +29,7 @@ const HeroBackground = ({ children }) => {
 				
 				<MovieInfoBox />
 				
-				<Box m={8} />
-				
-			
-				
+				<Box m={8} />			
 				<Box m={8} />
 			</Hidden>
 

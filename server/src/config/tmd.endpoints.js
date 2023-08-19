@@ -6,6 +6,8 @@ const endPoints = (mediaType, mediaId) => {
 		"video": `/${mediaType}/${mediaId}/videos`,
 		"genres": `/genre/${mediaType}/list`,
 		"credits": `/${mediaType}/${mediaId}/credits`,
+		"person": `/person/${mediaId}`,
+		"personCredits": `/person/${mediaId}/${mediaType}_credits`,
 		"search": `/search/${mediaType}`,
 		"details": `/${mediaType}/${mediaId}`,
 		"similar": `/${mediaType}/${mediaId}/similar`

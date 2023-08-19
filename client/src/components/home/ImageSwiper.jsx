@@ -6,8 +6,8 @@ import 'swiper/css/navigation';
 // import required modules
 import { Navigation } from 'swiper/modules';
 
-const ImageSwiper = ({ title, media, slides }) => {
-	
+const ImageSwiper = ({ title, media, slides, type }) => {
+
 	return (
 		<>
 			{title == 'VIDEOS' ?
@@ -33,7 +33,7 @@ const ImageSwiper = ({ title, media, slides }) => {
 					{media.map((v, i) => {
 						return <swiper-slide key={i} lazy="true">
 
-							<MediaCard media={v} />
+							<MediaCard media={v} media_type={type} />
 
 						</swiper-slide>
 					})}

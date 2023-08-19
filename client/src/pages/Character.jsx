@@ -15,8 +15,9 @@ import { useLocation } from 'react-router-dom'
 const Character = () => {
 	const location = useLocation()
 	const personId = location.pathname.split('/')[3]  /* 587506; */
-	const mediaType = location.pathname.split('/')[2]  /* 587506; */
+	let mediaType = location.pathname.split('/')[2]  /* 587506; */
 	const dispatch = useDispatch()
+	mediaType == 'series'? mediaType = 'tv' : 'movie'
 
 
 	useEffect(() => {

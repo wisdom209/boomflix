@@ -32,8 +32,9 @@ const styles = {
 
 export function MovieInfoBoxNoCast() {
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
-	const genreList = useSelector(state => state.global.genres)
-	
+	let genreList = useSelector(state => state.global.genres)
+	genreList = genreList?.genres || genreList
+
 	return (
 		<Stack spacing={2}>
 			<Stack>
@@ -45,8 +46,8 @@ export function MovieInfoBoxNoCast() {
 			<Stack direction='row' spacing={2}>
 
 				<CircularRating rating={mediaDetails?.vote_average.toFixed(1)} size={50} />
-				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[0].name || 'movie'} color="error" />
-				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[1].name || 'movie'} color="error" />
+				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[0]?.name || 'movie'} color="error" />
+				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[1]?.name || 'movie'} color="error" />
 
 			</Stack>
 
@@ -63,7 +64,7 @@ export function MovieInfoBoxNoCast() {
 				<Stack>
 					<Button
 						component="a"
-						href="video_section"
+						/* href="video_section" */
 						variant="contained"
 						sx={{ bgcolor: 'red', width: '200px' }}>
 						<PlayArrow /> Watch Now
@@ -79,7 +80,6 @@ export function MovieInfoBox() {
 
 	const genreList = useSelector(state => state.global.genres)
 
-
 	return (
 
 		<Stack spacing={3}>
@@ -92,10 +92,10 @@ export function MovieInfoBox() {
 			<Stack direction='row' spacing={2}>
 
 				<CircularRating rating={mediaDetails.vote_average.toFixed(1)} size={50} />
-			
 
-				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[0].name || 'movie'} color="error" />
-				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[1].name || 'movie'} color="error" />
+				<Chip label={mediaDetails?.genres[0]?.name || getGenreFromList(genreList, mediaDetails?.genre_ids)[0].name || 'movie'} color="error" />
+				<Chip label={mediaDetails?.genres[1]?.name || getGenreFromList(genreList, mediaDetails?.genre_ids)[0].name || 'movie'} color="error" />
+
 
 
 			</Stack>
@@ -112,6 +112,9 @@ export function MovieInfoBox() {
 
 				<Stack>
 					<Button
+						onClick={() => {
+							alert('hello')
+						}}
 						component="a"
 						href='#video_section'
 						variant="contained"
@@ -146,6 +149,7 @@ const MediaDescription = () => {
 
 				</Stack>
 			</Hidden>
+
 			<Hidden mdUp >
 				<Stack zIndex={1} ml={2}  >
 					<Card style={{ background: 'transparent' }}>
@@ -159,7 +163,6 @@ const MediaDescription = () => {
 							src={poster}
 						/>
 					</Card>
-
 				</Stack>
 			</Hidden>
 		</Box >

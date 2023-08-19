@@ -5,7 +5,7 @@ const mediaAxios = require('../config/tmdb.axiosClient')
 
 const getTrending = async (req, res) => {
 	try {
-		
+
 		const mediaType = req.params.mediaType;
 
 		const trendingEndpoint = endPoints(mediaType)['trending']
@@ -141,8 +141,37 @@ const getSimilar = async (req, res) => {
 	}
 }
 
+const getPerson = async (req, res) => {
+	try {
+		const { mediaId } = req.params;
+
+		const detailsEndpoint = endPoints(null, mediaId)['person']
+		const details = await mediaAxios(detailsEndpoint)
+
+		handleResponse.ok(res, details)
+
+	} catch (error) {
+		handleResponse.error(res, error)
+	}
+}
+
+const getPersonCredits = async (req, res) => {
+
+	try {
+		const { mediaType, mediaId } = req.params;
+
+		const detailsEndpoint = endPoints(mediaType, mediaId)['personCredits']
+		const details = await mediaAxios(detailsEndpoint)
+
+		handleResponse.ok(res, details)
+
+	} catch (error) {
+		handleResponse.error(res, error)
+	}
+}
+
 
 module.exports = {
-	getTrending, getPopular, getToprated, getSimilar,
-	getGenres, getVideo, getCredits, getSearch, getDetails
+	getTrending, getPopular, getToprated, getSimilar, getPerson,
+	getGenres, getVideo, getCredits, getSearch, getDetails, getPersonCredits
 }

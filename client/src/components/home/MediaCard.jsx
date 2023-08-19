@@ -6,11 +6,12 @@ import { useState } from 'react'
 import { buildImageUrl } from '../../api_client/axiosClient'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const MediaCard = ({ media }) => {
+const MediaCard = ({ media, media_type }) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const navigate = useNavigate()
 	const location = useLocation()
-	const mediaType = location.pathname.split('/')[2]
+	const mediaType = location.pathname.split('/')[2] || media_type
+
 
 	return (
 		<Card style={{ position: 'relative', background: 'black' }}>
@@ -18,6 +19,7 @@ const MediaCard = ({ media }) => {
 				onMouseOver={() => setIsHovered(true)}
 				onMouseOut={() => setIsHovered(false)}
 				onClick={() => {
+					console.log('media type', media_type)
 					navigate(`/media/${mediaType}/${media.id}`)
 				}}
 			>

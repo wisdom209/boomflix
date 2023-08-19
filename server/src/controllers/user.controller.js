@@ -8,11 +8,9 @@ const register = async (req, res) => {
 
 		const { username, password } = req.body
 
-		if (!username || !password) return handleResponse.badRequest(res)
+		if (!username || !password) return handleResponse.badRequest(res, 'enter all fields')
 
 		let user = await userModel.findOne({ username })
-
-		console.log(user)
 
 		if (user) return handleResponse.badRequest(res, "user already exists")
 
@@ -35,17 +33,17 @@ const login = async (req, res) => {
 	try {
 		const { username, password } = req.body;
 
-		if (!username || !password) return handleResponse.badRequest(res)
+		if (!username || !password) return handleResponse.badRequest(res, 'enter all fields')
 
 		const user = await userModel.findOne({ username }).select('+password')
 
-		if (!user) return handleResponse.unauthorize(res)
+		if (!user) return handleResponse.unauthorize(res, 'invalid credentials')
 
 		const isValidPassword = bcrypt.compareSync(password, user.password)
 
 		if (!isValidPassword) return handleResponse.unauthorize(res, "invalid credentials")
 
-		const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '24h' })
+		const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '5d' })
 
 		handleResponse.ok(res, { username, token })
 	} catch (error) {
@@ -60,11 +58,11 @@ const updatePassword = async (req, res) => {
 
 		const username = req.user;
 
-		if (!username || !password || !newPassword) return handleResponse.badRequest(res)
+		if (!username || !password || !newPassword) return handleResponse.badRequest(res, 'enter all fields')
 
 		const user = await userModel.findOne({ username }).select('+password')
 
-		if (!user) return handleResponse.unauthorize(res)
+		if (!user) return handleResponse.unauthorize(res, 'invalid credentials')
 
 		const isValidPassword = bcrypt.compareSync(password, user.password)
 

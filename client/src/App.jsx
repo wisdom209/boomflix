@@ -21,6 +21,7 @@ const App = () => {
 					<Route path="/favorites" element={<Favorites />}></Route>
 					<Route path="/reviews" element={<Reviews />}></Route>
 					<Route path="/media/:media_type/:media_id" element={<Media />}></Route>
+					<Route path="*" element={<>404</>}></Route>
 				</Routes>
 			</Router>
 			<ToastContainer />
