@@ -56,8 +56,18 @@ const getReviews = async (req, res) => {
 	} catch (error) {
 		handleResponse.error(res, error)
 	}
-
 }
 
-module.exports = { removeReview, addReview, getReviews }
+const getAllReviews = async (req, res) => {
+	try {
+		const reviews = await reviewModel.find()
+
+		handleResponse.ok(res, reviews)
+
+	} catch (error) {
+		handleResponse.error(res, error)
+	}
+}
+
+module.exports = { removeReview, addReview, getReviews, getAllReviews }
 

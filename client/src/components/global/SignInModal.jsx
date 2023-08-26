@@ -3,8 +3,10 @@ import Cookies from 'js-cookie'
 import { Stack, Typography, TextField, Button, Modal } from '@mui/material'
 import { useState } from 'react'
 import { loginUser, registerUser } from '../../api_client/axiosClient'
+import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+
 
 const SignInModal = ({ modalOpen, setmodalOpen }) => {
 
@@ -13,6 +15,7 @@ const SignInModal = ({ modalOpen, setmodalOpen }) => {
 	const [helperText, setHelperText] = useState('')
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+	const location = useLocation()
 
 	return (
 		<>

@@ -13,7 +13,6 @@ const MediaList = () => {
 	let videos = useSelector(state => state.global.media.video)
 	videos = videos.results.filter((v, i) => v.site == 'YouTube')
 
-
 	return (
 		<>
 			{similarMovies?.error == undefined &&

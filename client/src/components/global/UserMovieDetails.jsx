@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Typography, Button, Stack, Card, CardMedia, Box, CardActionArea } from '@mui/material'
 import { Delete } from '@mui/icons-material'
-import { buildImageUrl, getFavorites, getMediaDetail } from '../../api_client/axiosClient'
+import { buildImageUrl, getFavorites, getMediaDetail, removeFavorite } from '../../api_client/axiosClient'
 import Loading from '../../pages/Loading'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,12 +16,11 @@ const UserMovieDetails = ({ expectedDetail, count }) => {
 
 				Promise.allSettled(promises).then(responses => {
 
-					console.log(responses)
 					responses.map((v, i) => {
 						response.data[i].details = v.value.data;
 					})
 					setMedia(response.data);
-					console.log(media)
+					setLoading(false)
 				})
 
 			}).catch(e => {
@@ -34,7 +33,7 @@ const UserMovieDetails = ({ expectedDetail, count }) => {
 
 	return (
 		<>
-			{loading && media.length == 0 ? <Loading /> : <>
+			{loading  ? <Loading /> : <>
 				<Typography color="white" fontWeight={700} variant='h5' mt="100px" ml="20px" mb="20px" textAlign="center">{expectedDetail} ({media.length})</Typography>
 
 				<Stack flexGrow={1} direction="row" flexWrap='wrap' alignItems="center" justifyContent="center">
@@ -58,7 +57,24 @@ const UserMovieDetails = ({ expectedDetail, count }) => {
 									</Box>
 								</CardActionArea>
 							</Card>
-							<Button endIcon={<Delete />} style={{ backgroundColor: 'red', color: 'white' }}>REMOVE</Button>
+							<Button
+							onClick={() => {
+								removeFavorite(v.mediaType, v.mediaId).then(res => {
+									getFavorites().then(response => {
+										const promises = response.data.map((v, i) => getMediaDetail(v.mediaType, v.mediaId));
+						
+										Promise.allSettled(promises).then(responses => {
+						
+											console.log(responses)
+											responses.map((v, i) => {
+												response.data[i].details = v.value.data;
+											})
+											setMedia(response.data);
+										})
+									})
+								})
+							}}
+							endIcon={<Delete />} style={{ backgroundColor: 'red', color: 'white' }}>REMOVE</Button>
 						</Stack>
 					}
 

@@ -134,4 +134,61 @@ export const getFavorites = () => {
 	}
 }
 
+export const removeFavorite = (media_Type, media_Id) => {
+	try {
+		return axios.delete(baseUrl + `/favorite/${media_Type}/${media_Id}`,
+			{
+				headers: {
+				Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		})
+	} catch (error) {
+		return ({ error })
+	}
+}
 
+
+/* add Reviews */
+export const addReview = (mediaType, mediaId, body) => {
+	try {
+		const data = { 'review': body };
+		return axios.post(baseUrl + `/review/${mediaType}/${mediaId}`,
+			data, {
+			headers: {
+				Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		})
+	} catch (error) {
+		return ({ error })
+	}
+}
+
+export const getReviews = (mediaType, mediaId) => {
+	try {
+		return axios.get(baseUrl + `/review/${mediaType}/${mediaId}`);
+	} catch (error) {
+		return ({error})
+	}
+}
+
+export const removeReview = (mediaId) => {
+	try {
+		return axios.delete(baseUrl + `/review/${mediaId}`,
+			{
+				headers: {
+				Authorization: `Bearer ${Cookies.get('token')}`
+			}
+		})
+	} catch (error) {
+		return ({ error })
+	}
+}
+
+
+export const getAllReviews = () => {
+	try {
+		return axios.get(baseUrl + `/reviews/all`);
+	} catch (error) {
+		return ({error})
+	}	
+}

@@ -8,6 +8,8 @@ router.post('/review/:mediaType/:mediaId', verifyToken, reviewController.addRevi
 
 router.delete('/review/:id', verifyToken, reviewController.removeReview)
 
-router.get('/review/:mediaType/:mediaId', verifyToken, reviewController.getReviews)
+router.get('/review/:mediaType/:mediaId', reviewController.getReviews)
+
+router.get('/reviews/all', reviewController.getAllReviews);
 
 module.exports = router

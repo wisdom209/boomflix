@@ -2,20 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const appSlice = createSlice({
 	name: 'app',
-	initialState: { count: 0, media: {}, username: '', genres: {} },
+	initialState: { media: {}, username: '', genres: {} },
 	reducers: {
-		increment: (state) => {
-			state.count += 1
-		},
-		decrement: (state) => {
-			state.count -= 1
-		},
-		incrementBy: (state, action) => {
-			state.count += action.payload
-		},
-		decrementBy: (state, action) => {
-			state.count -= action.payload
-		},
 		setPopularMovies: (state, action) => {
 			state.media['popularMovies'] = action.payload
 		},
@@ -50,8 +38,7 @@ export const appSlice = createSlice({
 })
 
 
-export const { increment, decrement, incrementBy, decrementBy,
-	setPopularMovies, setPopularSeries, setTopratedSeries, setTopratedMovies,
+export const { setPopularMovies, setPopularSeries, setTopratedSeries, setTopratedMovies,
 	setMediaDetail, setSimilar, setVideo, setPersonDetail, setUsername, setGenres
 } = appSlice.actions
 

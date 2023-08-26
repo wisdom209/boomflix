@@ -4,7 +4,7 @@ const handleResponse = require('../handler/response.handler')
 const verifyToken = async (req, res, next) => {
 	try {
 		let token = req.headers.authorization
-
+		
 		if (token) token = token.split(' ')[1].trim()
 		else return handleResponse.unauthorize(res, "invalid token")
 
@@ -16,7 +16,7 @@ const verifyToken = async (req, res, next) => {
 
 		next()
 	} catch (error) {
-
+		console.log('oops')
 		return handleResponse.error(res, { error })
 	}
 
