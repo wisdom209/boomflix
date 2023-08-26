@@ -52,15 +52,13 @@ const removeFavorite = async (req, res) => {
 const getFavorites = async (req, res) => {
 	try {
 		const username = req.user;
-
+		
 		const favorites = await favoriteModel.find({ username })
 
 		handleResponse.ok(res, favorites)
 	} catch (error) {
 		handleResponse.error(res, error)
 	}
-
-
 }
 
 module.exports = { addFavorite, removeFavorite, getFavorites }

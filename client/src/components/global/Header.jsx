@@ -116,8 +116,9 @@ function MediumScreenHeader(props) {
 }
 
 function LoggedInUserMenu(props) {
+	const navigage = useNavigate()
 	return (<Menu open={props.openMenu} anchorEl={props.anchorEl} onClose={props.handleCloseMenu}>
-		<MenuItem>
+		<MenuItem onClick={()=>{navigage('/favorites')}}>
 			<ListItemIcon>
 				<Favorite />
 			</ListItemIcon>
@@ -125,7 +126,7 @@ function LoggedInUserMenu(props) {
 				FAVORITES
 			</ListItemText>
 		</MenuItem>
-		<MenuItem>
+		<MenuItem onClick={()=>{navigage('/reviews')}}>
 			<ListItemIcon>
 				<Reviews />
 			</ListItemIcon>
@@ -192,7 +193,7 @@ const Header = () => {
 					<LargeScreenHeader />
 					<MediumScreenHeader isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
 					{
-						(username == false) ?
+						(!username) ?
 							<Button
 								color="error"
 								variant="contained"
@@ -202,7 +203,7 @@ const Header = () => {
 							<Typography
 								variant="h5"
 								fontWeight={700}
-								sx={{ marginLeft: 'auto' }}
+								sx={{ marginLeft: 'auto', color: 'red' }}
 								onClick={(e) => setanchorEl(e.currentTarget)}
 							>{username}</Typography>
 					}

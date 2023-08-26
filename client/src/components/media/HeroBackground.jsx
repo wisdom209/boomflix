@@ -27,7 +27,7 @@ const HeroBackground = ({ children }) => {
 			</Box>
 			<Hidden mdUp>
 				
-				<MovieInfoBox />
+				<MovieInfoBox viewType='mobile'/>
 				
 				<Box m={8} />			
 				<Box m={8} />

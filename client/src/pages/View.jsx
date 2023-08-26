@@ -27,7 +27,6 @@ const View = () => {
 		})
 
 		getGenres(mediaType).then(response => {
-
 			dispatch(setGenres(response.data.genres))
 		}).catch(e => console.log('e', { e }))
 
@@ -54,7 +53,6 @@ const View = () => {
 
 	return (
 		<>
-
 			{
 				trendingMovies.length >= 1 && Object.keys(media)?.length >= 5 ?
 					<>
@@ -68,26 +66,6 @@ const View = () => {
 									</Typography>
 								</Button>
 
-								{/* <Stack direction='row' spacing={2}>
-									<Button style={{ color: 'white', background: 'red', marginBottom: '10px' }}
-										onClick={() => {
-											setSubtype('popular')
-										}}
-									>
-										<Typography>
-											POPULAR
-										</Typography>
-									</Button>
-									<Button style={{ color: 'white', background: 'red', marginBottom: '10px' }}
-										onClick={() => {
-											setSubtype('toprated')
-										}}
-									>
-										<Typography>
-											TOP RATED
-										</Typography>
-									</Button>
-								</Stack> */}
 							</Stack>
 						</Box>
 

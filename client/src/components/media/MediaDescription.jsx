@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Stack, Typography, Chip, IconButton, Box, Hidden, Button, Card, CardMedia } from "@mui/material"
 import CircularRating from '../global/CircularRating'
 import { FavoriteBorderOutlined } from '@mui/icons-material'
@@ -79,10 +79,21 @@ export function MovieInfoBoxNoCast() {
 	)
 }
 
-export function MovieInfoBox() {
+export function MovieInfoBox({viewType}) {
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
+	let genreList = useSelector(state => state.global.genres)
+	
+	genreList = genreList?.genres || genreList
+	const location = useLocation()
+	const navigate = useNavigate()
+	let navigate_to = false;
+	
+	if (location.pathname.split('/')[1] === 'view')
+	{
+		navigate_to = '#view_section'
+	}
+	let type = location.pathname.split('/')[2]
 
-	const genreList = useSelector(state => state.global.genres)
 
 	return (
 
@@ -114,7 +125,7 @@ export function MovieInfoBox() {
 				<Stack>
 					<Button
 						component="a"
-						href='#video_section'
+						href={!navigate_to? '#video_section' : type == 'tv' ? `/media/series/${mediaDetails.id}` : `/media/${type}/${mediaDetails.id}`}
 						variant="contained"
 						sx={{ bgcolor: 'red', width: '200px' }}>
 						<PlayArrow /> Watch Now

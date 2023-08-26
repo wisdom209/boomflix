@@ -3,7 +3,7 @@ import { Box, Typography, Stack, Button } from '@mui/material'
 
 const Footer = () => {
 	return (
-		<Box style={{ backgroundColor: '#312f2f', marginTop: 'auto', bottom: '0', width: '100vw' }}>
+		<Box style={{ postion: 'absolute', backgroundColor: '#312f2f', marginTop: 'auto', bottom: '0', width: '100vw' }}>
 			<Stack direction="row" spacing={2} p={2}>
 				<Typography sx={{
 					fontSize: '20px',

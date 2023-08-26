@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const baseUrl = 'http://localhost:5000'
 
@@ -120,5 +121,17 @@ export const registerUser = (username, password) => {
 	}
 }
 
+
+/* get Favorites */
+
+export const getFavorites = () => {
+	try {
+		return axios.get(baseUrl + '/favorites',
+			{ headers: { Authorization: `Bearer ${Cookies.get('token')}` } })
+	} catch (error) {
+		console.log(error.message)
+		return ({ error })
+	}
+}
 
 

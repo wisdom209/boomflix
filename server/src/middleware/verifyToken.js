@@ -16,6 +16,7 @@ const verifyToken = async (req, res, next) => {
 
 		next()
 	} catch (error) {
+
 		return handleResponse.error(res, { error })
 	}
 

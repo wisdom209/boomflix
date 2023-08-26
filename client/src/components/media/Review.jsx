@@ -18,7 +18,7 @@ const Review = () => {
 			<Stack direction='row' spacing={3} style={{ marginLeft: '10px' }}>
 				<TextField
 					id="outlined-multiline-static"
-					label="What do you think about this show?"
+					placeholder='What do you think about this show?'
 					multiline
 					sx={{ backgroundColor: '#555353', width: "60%", borderRadius: '8px', margin: '0 10px', color: 'white' }}
 					InputLabelProps={{
@@ -28,7 +28,7 @@ const Review = () => {
 						sx: { color: 'white' }
 					}}
 					rows={4}
-					color='success'
+					color='common'
 				/>
 
 				<Button startIcon={<Send />} style={{ backgroundColor: 'red', color: 'white', height: '20%' }}>

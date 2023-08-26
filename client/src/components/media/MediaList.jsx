@@ -32,7 +32,7 @@ const MediaList = () => {
 					</Hidden>
 					<Box />
 					<Review />
-					{similarMovies && <MediaSubSection title="YOU MAY ALSO LIKE" media={similarMovies.results} />}
+					{similarMovies && <MediaSubSection title="YOU MAY ALSO LIKE" media={similarMovies.results} type={similarMovies.mediaTYPE} />}
 				</Stack>
 			}
 		</>

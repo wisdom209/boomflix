@@ -19,8 +19,8 @@ const MediaCard = ({ media, media_type }) => {
 				onMouseOver={() => setIsHovered(true)}
 				onMouseOut={() => setIsHovered(false)}
 				onClick={() => {
-					console.log('media type', media_type)
 					navigate(`/media/${mediaType}/${media.id}`)
+					window.location.reload()
 				}}
 			>
 				<CardMedia
