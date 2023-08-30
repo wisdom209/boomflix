@@ -54,7 +54,7 @@ const View = () => {
 	return (
 		<>
 			{
-				trendingMovies.length >= 1 && Object.keys(media)?.length >= 5 ?
+				trendingMovies?.length >= 1 && Object.keys(media)?.length >= 5 ?
 					<>
 						<Header />
 						<Box height="100vh" position="absolute" style={{ background: 'linear-gradient(to top right, rgba(0,0,0, 1), transparent), linear-gradient(to top, rgba(0,0,0, 0.6), transparent)', zIndex: 3, width: '100vw' }} />

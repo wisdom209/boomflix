@@ -91,7 +91,7 @@ const SearchModal = () => {
             </List>
           )}
         </DialogContent>
-        <DialogActions sx={{width: '25rem', backgroundColor: '#aaa'}}>
+        <DialogActions sx={{width: '25rem', backgroundColor: '#aaa', paddingRight: '1.5rem'}}>
           <Button onClick={handleClose} color="error">
             Close
           </Button>

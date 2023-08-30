@@ -163,7 +163,7 @@ function LoggedInUserMenu(props) {
 }
 
 
-const Header = ({loading}) => {
+const Header = ({loading, dark}) => {
 	const [appBarBg, setAppBarBg] = useState('transparent')
 	const [modalOpen, setmodalOpen] = useState(false)
 	const [anchorEl, setanchorEl] = useState(null)
@@ -185,7 +185,8 @@ const Header = ({loading}) => {
 		if (window.scrollY >= 80) {
 			setAppBarBg('black')
 		} else {
-			setAppBarBg('transparent')
+			if(!dark)
+				setAppBarBg('transparent')
 		}
 	})
 

@@ -34,7 +34,7 @@ const Reviews = () => {
 	return (
 		<> {isLoading ? <Loading /> :
 			<Stack style={{ minHeight: '100vh' }}>
-				<Header />
+				<Header dark={true}/>
 				<Stack spacing={2} mx={1} mt='80px'>
 					<Typography fontWeight={700} fontSize='2rem' sx={{ color: 'white' }}>My Reviews ({reviews.length})</Typography>
 					<RedDivider />

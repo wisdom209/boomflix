@@ -13,15 +13,15 @@ import { useSelector } from "react-redux"
 
 const styles = {
 	backgroundBox: {
-		height: '100vh',
+		minHeight: '80vh',
 		width: '100vw',
-		background: 'linear-gradient(to top right, rgba(0,0,0, 1), \
+		background: 'linear-gradient(to top left, rgba(0,0,0, 1), \
 		transparent), linear-gradient(to top, rgba(0,0,0, 1), transparent)',
 		position: 'relative',
 		zIndex: 1,
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	}
 }
 
@@ -56,15 +56,14 @@ const HeroSwiper = ({ genres, trendingMovies }) => {
 	const genreList = useSelector(state => state.global.genres)
 
 	return (
-		<swiper-container navigation={true} modules={[Navigation]} className="mySwiper" >
+		<swiper-container slides={1} navigation={true} modules={[Navigation]} className="mySwiper" >
 			{trendingMovies !== undefined && trendingMovies.map((v, i) =>
-				<swiper-slide key={i} lazy="true">
+				i == 0 && <swiper-slide key={i} lazy="true">
 					<BackgroundHeroImg img={buildImageUrl(v.backdrop_path)} />
 					<Box sx={styles.backgroundBox}>
-						<Stack width='600px' spacing={2} mt={14} pl={2} >
-							<WatchNowButton videoId={v.id} videoType='movie' />
+						<Stack>
+							<MediaDescription media={v} />
 						</Stack>
-
 					</Box>
 				</swiper-slide>
 			)}

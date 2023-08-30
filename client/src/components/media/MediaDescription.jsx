@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Stack, Typography, Chip, IconButton, Box, Hidden, Button, Card, CardMedia } from "@mui/material"
 import CircularRating from '../global/CircularRating'
 import { Favorite, FavoriteBorderOutlined, Home } from '@mui/icons-material'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { addFavorites, buildImageUrl, removeFavorite } from '../../api_client/axiosClient'
 import { PlayArrow } from '@mui/icons-material'
 import { getGenreFromList } from '../home/HeroSwiper'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useFavorites from '../../hooks/useFavorites'
+import { setMediaDetail } from '../../redux/features/appSlice'
 
 
 const styles = {
@@ -194,8 +195,16 @@ function MediaSubDesc() {
 }
 
 
-const MediaDescription = () => {
-	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
+const MediaDescription = ({ media }) => {
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		if (media) {
+			dispatch(setMediaDetail(media))
+		}
+	}, [media])
+
+	const mediaDetails = useSelector(state => state.global.media.mediaDetail) || media
 
 	const poster = buildImageUrl(mediaDetails.poster_path)
 
