@@ -192,3 +192,14 @@ export const getAllReviews = () => {
 		return ({error})
 	}	
 }
+
+/* search */
+export const getSearch = (queryParams) => {
+	try {
+		const tv_promise = axios.get(baseUrl + `/search/tv?query=${queryParams}`)
+		const movie_promise = axios.get(baseUrl + `/search/movie?query=${queryParams}`)
+		return Promise.allSettled([tv_promise, movie_promise])
+	} catch (error) {
+		return ({error})
+	}	
+}

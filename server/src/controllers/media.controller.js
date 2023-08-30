@@ -68,7 +68,7 @@ const getGenres = async (req, res) => {
 const getSearch = async (req, res) => {
 	try {
 		const mediaType = req.params.mediaType;
-		const searchParams = req.query.searchParams;
+		const searchParams = req.query;
 
 		const searchEndpoint = endPoints(mediaType)['search']
 		const searchResult = await mediaAxios(searchEndpoint, searchParams)

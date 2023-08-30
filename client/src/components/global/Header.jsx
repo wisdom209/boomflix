@@ -20,6 +20,7 @@ import { setUsername } from '../../redux/features/appSlice'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
+import SearchModal from './SearchModal'
 
 
 function LargeScreenHeader() {
@@ -45,7 +46,8 @@ function LargeScreenHeader() {
 				navigate(`/view/tv`)
 			}}>TV SERIES</Button>
 
-			<Button variant='text' color="inherit" component='a'>SEARCH</Button>
+			{/* <Button variant='text' color="inherit" component='a'>SEARCH</Button> */}
+			<SearchModal/>
 
 			<IconButton color="black">
 				<LightModeOutlined color="primary" />
@@ -105,7 +107,7 @@ function MediumScreenHeader(props) {
 						<SearchSharp />
 					</ListItemIcon>
 					<ListItemText>
-						SEARCH
+						<SearchModal/>
 					</ListItemText>
 				</MenuItem>
 
@@ -214,7 +216,7 @@ const Header = ({loading}) => {
 			<LoggedInUserMenu anchorEl={anchorEl} openMenu={openMenu} handleCloseMenu={handleCloseMenu}></LoggedInUserMenu>
 
 			<SignInModal modalOpen={modalOpen} setmodalOpen={setmodalOpen} />
-
+		
 		</>
 	)
 }

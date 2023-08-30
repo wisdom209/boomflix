@@ -51,7 +51,7 @@ const Character = () => {
 							}} />
 
 							<Stack spacing={2} style={{ translate: '-30px' }}>
-								<Typography color="white" variant="h4">{person?.person_bio.name} ({person?.person_bio.birthday.slice(0, 4)})</Typography>
+								<Typography color="white" variant="h4">{person?.person_bio.name} ({person?.person_bio.birthday?.slice(0, 4)})</Typography>
 
 								<Typography color="white">
 									{person?.person_bio.biography}
