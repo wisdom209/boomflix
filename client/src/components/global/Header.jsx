@@ -1,9 +1,8 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import {
 	AppBar, Button, IconButton, Stack, Toolbar, Typography,
 	Menu, MenuItem, ListItemIcon, ListItemText, Hidden, Drawer, List
 } from '@mui/material'
-import { useState } from 'react'
 import { LightModeOutlined } from '@mui/icons-material'
 import SignInModal from './SignInModal'
 import { Favorite } from '@mui/icons-material'
@@ -162,7 +161,7 @@ function LoggedInUserMenu(props) {
 }
 
 
-const Header = () => {
+const Header = ({loading}) => {
 	const [appBarBg, setAppBarBg] = useState('transparent')
 	const [modalOpen, setmodalOpen] = useState(false)
 	const [anchorEl, setanchorEl] = useState(null)
@@ -170,8 +169,10 @@ const Header = () => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 	const dispatch = useDispatch()
 
-	dispatch(setUsername(Cookies.get('username')))
-
+	useEffect(() => {
+		dispatch(setUsername(Cookies.get('username')));
+	  }, [Cookies.get('username')]);
+	
 	const username = useSelector(state => state.global.username)
 
 	const handleCloseMenu = () => {

@@ -5,7 +5,7 @@ import Header from '../components/global/Header'
 const Loading = () => {
 	return (
 		<>
-			<Header />
+			<Header loading={false} />
 
 			<Stack height="100vh" sx={{
 				alignItems: 'center',

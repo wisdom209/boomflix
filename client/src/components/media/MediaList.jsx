@@ -1,5 +1,5 @@
 import { Avatar, Box, Hidden, Stack, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import MediaSubSection from '../global/MediaSubSection';
 import RedDivider from '../global/RedDivder';
@@ -10,8 +10,8 @@ import CastSwiper from './CastSwiper';
 const MediaList = () => {
 
 	const similarMovies = useSelector(state => state.global.media.similar)
-	let videos = useSelector(state => state.global.media.video)
-	videos = videos.results.filter((v, i) => v.site == 'YouTube')
+	let videos = useSelector(state => state.global.media.video)	
+	videos = videos.results?.filter((v, i) => v.site == 'YouTube') || []
 
 	return (
 		<>

@@ -2,6 +2,7 @@ import { Box, Stack } from "@mui/material"
 import BackgroundHeroImg from "./BackgroundHeroImg"
 import WatchNowButton from "../global/WatchNowButton"
 import { buildImageUrl } from "../../api_client/axiosClient"
+import MediaDescription from "../media/MediaDescription"
 import 'swiper/css'
 import 'swiper/css/navigation'
 
@@ -61,10 +62,6 @@ const HeroSwiper = ({ genres, trendingMovies }) => {
 					<BackgroundHeroImg img={buildImageUrl(v.backdrop_path)} />
 					<Box sx={styles.backgroundBox}>
 						<Stack width='600px' spacing={2} mt={14} pl={2} >
-							{/* <MediaDescription original_title={v.original_title}
-								overview={v.overview}
-								vote_average={v.vote_average}
-								genres={getGenreFromList(genreList, v.genre_ids)} /> */}
 							<WatchNowButton videoId={v.id} videoType='movie' />
 						</Stack>
 

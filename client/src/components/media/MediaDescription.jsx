@@ -106,7 +106,7 @@ export function MovieInfoBox({viewType}) {
 
 			<Stack direction='row' spacing={2}>
 
-				<CircularRating rating={mediaDetails.vote_average.toFixed(1)} size={50} />
+				<CircularRating rating={mediaDetails.vote_average?.toFixed(1) || 0.0} size={50} />
 				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[0]?.name || 'movie'} color="error" />
 				<Chip label={getGenreFromList(genreList, mediaDetails?.genre_ids)[0]?.name || 'movie'} color="error" />
 
@@ -145,7 +145,8 @@ function MediaSubDesc() {
 
 const MediaDescription = () => {
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
-	const poster = buildImageUrl(mediaDetails.poster_path)
+	
+	const poster = buildImageUrl(mediaDetails.poster_path) 
 
 	return (
 		< Box style={styles.backgroundOverlay} >

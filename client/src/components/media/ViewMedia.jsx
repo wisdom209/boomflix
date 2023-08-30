@@ -50,7 +50,7 @@ const ViewMedia = ({ mediaList, type, subtype }) => {
 				</Stack>
 				<Hidden mdUp>
 					<Stack spacing={0}>
-						{media.map((v, i) => {
+						{media && media.map((v, i) => {
 
 							if (i % 4 == 0) {
 								const mediaSubset = media.slice(i, i + 4);
@@ -62,7 +62,7 @@ const ViewMedia = ({ mediaList, type, subtype }) => {
 				</Hidden>
 				<Hidden mdDown>
 					<Stack spacing={0}>
-						{media.map((v, i) => {
+						{media && media.map((v, i) => {
 
 							if (i % 4 == 0) {
 								const mediaSubset = media.slice(i, i + 4);
