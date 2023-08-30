@@ -4,30 +4,13 @@ import { Delete } from '@mui/icons-material'
 import { buildImageUrl, getFavorites, getMediaDetail, removeFavorite } from '../../api_client/axiosClient'
 import Loading from '../../pages/Loading'
 import { useNavigate } from 'react-router-dom'
+import useFavorites from '../../hooks/useFavorites'
 
 const UserMovieDetails = ({ expectedDetail, count }) => {
 	const [media, setMedia] = useState([])
 	const [loading, setLoading] = useState(true)
 
-	useEffect(() => {
-		if (expectedDetail === 'YOUR FAVORITES') {
-			getFavorites().then(response => {
-				const promises = response.data.map((v, i) => getMediaDetail(v.mediaType, v.mediaId));
-
-				Promise.allSettled(promises).then(responses => {
-
-					responses.map((v, i) => {
-						response.data[i].details = v.value.data;
-					})
-					setMedia(response.data);
-					setLoading(false)
-				})
-
-			}).catch(e => {
-				console.log(e)
-			})
-		}
-	}, [expectedDetail])
+	useFavorites(expectedDetail, setMedia, setLoading)
 
 	const navigate = useNavigate()
 

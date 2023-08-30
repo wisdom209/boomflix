@@ -1,12 +1,13 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Stack, Typography, Chip, IconButton, Box, Hidden, Button, Card, CardMedia } from "@mui/material"
 import CircularRating from '../global/CircularRating'
-import { FavoriteBorderOutlined } from '@mui/icons-material'
+import { Favorite, FavoriteBorderOutlined, Home } from '@mui/icons-material'
 import { useSelector } from 'react-redux'
 import { buildImageUrl } from '../../api_client/axiosClient'
 import { PlayArrow } from '@mui/icons-material'
 import { getGenreFromList } from '../home/HeroSwiper'
 import { useLocation, useNavigate } from 'react-router-dom'
+import useFavorites from '../../hooks/useFavorites'
 
 
 const styles = {
@@ -33,11 +34,20 @@ const styles = {
 export function MovieInfoBoxNoCast() {
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
 	let genreList = useSelector(state => state.global.genres)
+	const [favorites, setfavorites] = useState([])
+	const [loadingFavorite, setLoadingFavorite] = useState(true)
 	genreList = genreList?.genres || genreList
 	const location = useLocation()
 	const navigate = useNavigate()
 	let type = location.pathname.split('/')[2]
+	useFavorites("YOUR FAVORITES", setfavorites, setLoadingFavorite)
 
+	useEffect(() => {
+		!loadingFavorite && setfavorites(favorites.filter((v, i) => {
+			return v.mediaType == type && v.mediaId == `${mediaDetails.id}`
+		}))
+
+	}, [loadingFavorite])
 
 	return (
 		<Stack spacing={2}>
@@ -61,9 +71,11 @@ export function MovieInfoBoxNoCast() {
 				</Typography>
 			</Stack>
 			<Stack direction='row' spacing={2} alignItems='center'>
-				<IconButton>
+
+				{favorites.length == 0 ? <IconButton>
 					<FavoriteBorderOutlined size="large" color="error" />
-				</IconButton>
+				</IconButton> : <Favorite size="large" color="error" />
+				}
 
 				<Stack>
 					<Button
@@ -79,20 +91,30 @@ export function MovieInfoBoxNoCast() {
 	)
 }
 
-export function MovieInfoBox({viewType}) {
+export function MovieInfoBox({ viewType }) {
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
 	let genreList = useSelector(state => state.global.genres)
-	
+
 	genreList = genreList?.genres || genreList
 	const location = useLocation()
 	const navigate = useNavigate()
 	let navigate_to = false;
-	
-	if (location.pathname.split('/')[1] === 'view')
-	{
+
+	if (location.pathname.split('/')[1] === 'view') {
 		navigate_to = '#view_section'
 	}
 	let type = location.pathname.split('/')[2]
+
+	const [favorites, setfavorites] = useState([])
+	const [loadingFavorite, setloadingFavorite] = useState(true)
+	useFavorites("YOUR FAVORITES", setfavorites, setloadingFavorite)
+
+	useEffect(() => {
+		!loadingFavorite && setfavorites(favorites.filter((v, i) => {
+			return v.mediaType == type && v.mediaId == `${mediaDetails.id}`
+		}))
+
+	}, [loadingFavorite])
 
 
 	return (
@@ -118,14 +140,15 @@ export function MovieInfoBox({viewType}) {
 				</Typography>
 			</Stack>
 			<Stack direction='row' spacing={2} alignItems='center'>
-				<IconButton>
+				{favorites.length == 0 ? <IconButton>
 					<FavoriteBorderOutlined size="large" color="error" />
-				</IconButton>
+				</IconButton> : <Favorite size="large" color="error" />
+				}
 
 				<Stack>
 					<Button
 						component="a"
-						href={!navigate_to? '#video_section' : type == 'tv' ? `/media/series/${mediaDetails.id}` : `/media/${type}/${mediaDetails.id}`}
+						href={!navigate_to ? '#video_section' : type == 'tv' ? `/media/series/${mediaDetails.id}` : `/media/${type}/${mediaDetails.id}`}
 						variant="contained"
 						sx={{ bgcolor: 'red', width: '200px' }}>
 						<PlayArrow /> Watch Now
@@ -145,8 +168,8 @@ function MediaSubDesc() {
 
 const MediaDescription = () => {
 	const mediaDetails = useSelector(state => state.global.media.mediaDetail)
-	
-	const poster = buildImageUrl(mediaDetails.poster_path) 
+
+	const poster = buildImageUrl(mediaDetails.poster_path)
 
 	return (
 		< Box style={styles.backgroundOverlay} >
