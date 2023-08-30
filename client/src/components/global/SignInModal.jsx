@@ -105,7 +105,6 @@ const SignInModal = ({ modalOpen, setmodalOpen }) => {
 										if (response.data.token) {
 											const exp_date = new Date();
 											exp_date.setDate(exp_date.getDate() + 5)
-
 											Cookies.set('token', response.data.token, { expires: exp_date })
 											Cookies.set('username', response.data.username, {expires: exp_date})
 										}

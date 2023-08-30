@@ -139,10 +139,20 @@ export const removeFavorite = (media_Type, media_Id) => {
 		return axios.delete(baseUrl + `/favorite/${media_Type}/${media_Id}`,
 			{
 				headers: {
-				Authorization: `Bearer ${Cookies.get('token')}`
-			}
-		})
+					Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			})
 	} catch (error) {
+		return ({ error })
+	}
+}
+
+export const addFavorites = (media_Type, media_Id) => {
+	try {
+		return axios.post(baseUrl + `/favorite/${media_Type}/${media_Id}`, {},
+			{ headers: { Authorization: `Bearer ${Cookies.get('token')}` } })
+	} catch (error) {
+		console.log(error.message)
 		return ({ error })
 	}
 }
@@ -167,7 +177,7 @@ export const getReviews = (mediaType, mediaId) => {
 	try {
 		return axios.get(baseUrl + `/review/${mediaType}/${mediaId}`);
 	} catch (error) {
-		return ({error})
+		return ({ error })
 	}
 }
 
@@ -176,9 +186,9 @@ export const removeReview = (mediaId) => {
 		return axios.delete(baseUrl + `/review/${mediaId}`,
 			{
 				headers: {
-				Authorization: `Bearer ${Cookies.get('token')}`
-			}
-		})
+					Authorization: `Bearer ${Cookies.get('token')}`
+				}
+			})
 	} catch (error) {
 		return ({ error })
 	}
@@ -189,8 +199,8 @@ export const getAllReviews = () => {
 	try {
 		return axios.get(baseUrl + `/reviews/all`);
 	} catch (error) {
-		return ({error})
-	}	
+		return ({ error })
+	}
 }
 
 /* search */
@@ -200,6 +210,6 @@ export const getSearch = (queryParams) => {
 		const movie_promise = axios.get(baseUrl + `/search/movie?query=${queryParams}`)
 		return Promise.allSettled([tv_promise, movie_promise])
 	} catch (error) {
-		return ({error})
-	}	
+		return ({ error })
+	}
 }

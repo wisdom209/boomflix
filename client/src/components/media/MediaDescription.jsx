@@ -3,7 +3,7 @@ import { Stack, Typography, Chip, IconButton, Box, Hidden, Button, Card, CardMed
 import CircularRating from '../global/CircularRating'
 import { Favorite, FavoriteBorderOutlined, Home } from '@mui/icons-material'
 import { useSelector } from 'react-redux'
-import { buildImageUrl } from '../../api_client/axiosClient'
+import { addFavorites, buildImageUrl, removeFavorite } from '../../api_client/axiosClient'
 import { PlayArrow } from '@mui/icons-material'
 import { getGenreFromList } from '../home/HeroSwiper'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -36,6 +36,7 @@ export function MovieInfoBoxNoCast() {
 	let genreList = useSelector(state => state.global.genres)
 	const [favorites, setfavorites] = useState([])
 	const [loadingFavorite, setLoadingFavorite] = useState(true)
+	const [isFavorite, setisFavorite] = useState(false)
 	genreList = genreList?.genres || genreList
 	const location = useLocation()
 	const navigate = useNavigate()
@@ -72,9 +73,23 @@ export function MovieInfoBoxNoCast() {
 			</Stack>
 			<Stack direction='row' spacing={2} alignItems='center'>
 
-				{favorites.length == 0 ? <IconButton>
+				{!isFavorite && favorites.length == 0 ? <IconButton
+					onClick={() => {
+						addFavorites(type, mediaDetails.id).then(res => {
+
+							setisFavorite(true)
+						})
+					}}
+				>
 					<FavoriteBorderOutlined size="large" color="error" />
-				</IconButton> : <Favorite size="large" color="error" />
+				</IconButton> : <IconButton
+					onClick={() => {
+						removeFavorite(type, mediaDetails.id).then(res => {
+							setisFavorite(false)
+						})
+					}}
+				><Favorite size="large" color="error" />
+				</IconButton>
 				}
 
 				<Stack>
@@ -107,6 +122,7 @@ export function MovieInfoBox({ viewType }) {
 
 	const [favorites, setfavorites] = useState([])
 	const [loadingFavorite, setloadingFavorite] = useState(true)
+	const [isFavorite, setisFavorite] = useState(false)
 	useFavorites("YOUR FAVORITES", setfavorites, setloadingFavorite)
 
 	useEffect(() => {
@@ -114,7 +130,7 @@ export function MovieInfoBox({ viewType }) {
 			return v.mediaType == type && v.mediaId == `${mediaDetails.id}`
 		}))
 
-	}, [loadingFavorite])
+	}, [loadingFavorite, isFavorite])
 
 
 	return (
@@ -140,11 +156,23 @@ export function MovieInfoBox({ viewType }) {
 				</Typography>
 			</Stack>
 			<Stack direction='row' spacing={2} alignItems='center'>
-				{favorites.length == 0 ? <IconButton>
+				{!isFavorite && favorites.length == 0 ? <IconButton
+					onClick={() => {
+						addFavorites(type, mediaDetails.id).then(res => {
+							setisFavorite(true)
+						})
+					}}
+				>
 					<FavoriteBorderOutlined size="large" color="error" />
-				</IconButton> : <Favorite size="large" color="error" />
+				</IconButton> : <IconButton
+					onClick={() => {
+						removeFavorite(type, mediaDetails.id).then(res => {
+							setisFavorite(false)
+						})
+					}}
+				><Favorite size="large" color="error" />
+				</IconButton>
 				}
-
 				<Stack>
 					<Button
 						component="a"
